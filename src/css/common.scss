@@ -1,0 +1,14 @@
+@import "base.scss";
+.loading{
+	@include flt;
+	z-index: 99999;
+	background-color: #241c1a;
+	span{
+		@include am(150px,50px);
+		@include font(21px,50px,#898584);
+		text-align: center;
+	}
+}
+.wrapper{
+	@include r;
+}
