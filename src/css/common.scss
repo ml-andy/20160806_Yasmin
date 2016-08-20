@@ -15,6 +15,31 @@ $vpw:0;
 	}
 	.stage_top{
 		@include fltvw(750,92);
-
+	}
+	.menu{
+		@include flt;
+		display: none;
+	}
+	.pop{
+		@include flt;
+		display: none;
+	}
+	.stage{
+		@include alt;
+		overflow: hidden;
+		.tip_box{
+			@include alb;
+			@include font(15px,18px,#000);
+			z-index: 1;
+			background-color: rgba(255,255,255,0.8);
+		}
+		.street{
+			@include alt(auto,100vh);
+			z-index: 0;
+			img{
+				width: auto;
+				height: 100%;
+			}
+		}
 	}
 }
