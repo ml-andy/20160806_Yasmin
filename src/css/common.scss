@@ -33,13 +33,15 @@ $vpw:0;
 			z-index: 1;
 			background-color: rgba(255,255,255,0.8);
 		}
-		.street{
-			@include alt(auto,100vh);
-			transition:0.15s;
-			z-index: 0;
-			img{
-				width: auto;
-				height: 100%;
+		.street_all{
+			@include alt(auto);
+			.street{
+				@include alt(auto);
+				z-index: 0;
+				img{
+					width: auto;
+					height: 100%;
+				}
 			}
 		}
 	}

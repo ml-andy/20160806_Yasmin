@@ -5,7 +5,9 @@
 		loading: $('.loading'),
 		street_width: $('.street').width()
 	};
-	console.log(o.street_width);
+	$('.street').eq(1).css('left',o.street_width);
+	$('.street_all').css('margin-left',o.street_width*-1);
+
 
 	//AddListener
 	$(window).load(window_load);
@@ -17,9 +19,9 @@
 
 	//Event
 	function window_deviceorientation(e) {
-		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha) - o.street_width);
+		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha)) * -1;
 		$('.tip_box').html(Math.floor(e.alpha) + 'dis:' + dis);
-		$('.street').css('left',dis);
+		$('.street_all').css('left',dis);
 	}
 	
 	
