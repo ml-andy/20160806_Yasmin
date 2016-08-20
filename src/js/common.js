@@ -2,12 +2,13 @@
 	//Init
 	var o ={
 		wrp: $('.wrapper'),
-		loading: $('.loading')
+		loading: $('.loading'),
+		menu_timeout:''
 	};
-	
 
 
 	//AddListener
+	$('.menubtn').click(menubtn_click);
 	$(window).load(window_load);
 	function window_load(){
 		o.loading.fadeOut();
@@ -18,13 +19,25 @@
 			window_deviceorientation(e);
 		});
 	}
-	
 
 
 	//Event
+	function menubtn_click(){
+		if($(this).hasClass('on')){
+			$('.menuDom').removeClass('on');
+			$('.menu').addClass('off').removeClass('on');
+			o.menu_timeout = setTimeout(function() {
+				$('.menu').removeClass('off');
+			}, 1000);
+		}
+		else{
+			$('.menuDom').addClass('on');
+			clearTimeout(o.menu_timeout);
+			$('.menu').removeClass('off').addClass('on');
+		}
+	}
 	function window_deviceorientation(e) {
 		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha - 180)) * -1;
-		$('.tip_box').html(Math.floor(e.alpha - 180) + 'dis8:' + dis);
 		$('.street_all').css('left',dis);
 	}
 	
