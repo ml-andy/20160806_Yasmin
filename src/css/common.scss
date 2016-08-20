@@ -1,20 +1,20 @@
 @import "base.scss";
 $vpw:1;
-.loading{
-	@include flt;
-	z-index: 99999;
-	background-image: url(../images/loading.png);
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: center center;
-	background-color: #FFF;
-}
-.stage_top{
-	@include fltvw(750,92);
 
-}
 
 $vpw:0;
 @media screen and (max-width: 750px) {
-	
+	.loading{
+		@include flt;
+		z-index: 99999;
+		background-image: url(../images/loading.png);
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center center;
+		background-color: #FFF;
+	}
+	.stage_top{
+		@include fltvw(750,92);
+
+	}
 }
