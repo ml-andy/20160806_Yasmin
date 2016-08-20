@@ -15,7 +15,9 @@
 
 	//Event
 	function window_deviceorientation(e) {
-		$('.tip_box').html(e.gamma);
+		$('.tip_box').html(e.alpha);
+
+		// $('.street').css('left',)
 	}
 	
 	
