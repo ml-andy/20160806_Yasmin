@@ -263,7 +263,7 @@ a{outline: none;hlbr:expression(this.onFocus=this.blur());text-decoration:none;}
 img{vertical-align:top;}
 
 @function getVW($aa) {
-  @if $vpw > 1 {
+  @if $vpw > 0 {
     @return $aa * 1px;
   }
   @else if $vpw == 0 {

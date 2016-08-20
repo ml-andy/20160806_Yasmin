@@ -9,8 +9,9 @@ $vpw:1;
 	background-position: center center;
 	background-color: #FFF;
 }
-.wrapper{
-	@include r;
+.stage_top{
+	@include fltvw(750,92);
+
 }
 
 $vpw:0;
