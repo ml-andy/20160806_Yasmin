@@ -17,8 +17,9 @@
 
 	//Event
 	function window_deviceorientation(e) {
-		$('.tip_box').html(Math.Round(e.alpha));
-		var dis = o.street_width / 360 * Math.Round(e.alpha) * -1;
+		$('.tip_box').html(Math.round(e.alpha));
+		var dis = o.street_width / 360 * Math.round(e.alpha) * -1;
+		console.log(dis);
 		$('.street').css('left',dis);
 	}
 	
