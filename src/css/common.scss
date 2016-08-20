@@ -35,6 +35,7 @@ $vpw:0;
 		}
 		.street_all{
 			@include alt(auto);
+			@include transform(translateX(0));
 			.street{
 				@include alt(auto);
 				z-index: 0;

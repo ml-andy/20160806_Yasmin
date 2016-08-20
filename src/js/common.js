@@ -13,15 +13,15 @@
 	$(window).load(window_load);
 	function window_load(){
 		o.loading.fadeOut();
+		window.addEventListener('deviceorientation', window_deviceorientation);
 	}
-	window.addEventListener('deviceorientation', window_deviceorientation);
 
 
 	//Event
 	function window_deviceorientation(e) {
 		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha - 180)) * -1;
 		$('.tip_box').html(Math.floor(e.alpha - 180) + 'dis3:' + dis);
-		$('.street_all').css('translate-left',dis);
+		$('.street_all').attr( 'style' , 'transform:translateX('+ dis +'px); margin-left: '+ o.street_width * -1 );
 	}
 	
 	
