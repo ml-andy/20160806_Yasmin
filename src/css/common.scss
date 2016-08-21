@@ -216,6 +216,7 @@ $vpw:0;
 			@include alt(auto);
 			&.move{
 				.street_all_in{
+					width: auto;
 					height: 120vh;
 					top: -10vh;
 					// left: 84vh;
