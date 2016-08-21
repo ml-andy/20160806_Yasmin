@@ -7,6 +7,7 @@
 		org_street: 156
 	};
 	$('.street').clone().appendTo('.street_all');
+	alert(1);
 
 
 	//AddListener
