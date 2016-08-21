@@ -4,7 +4,7 @@
 		wrp: $('.wrapper'),
 		loading: $('.loading'),
 		menu_timeout:'',
-		org_street: 204
+		org_street: 156
 	};
 	$('.street').clone().appendTo('.street_all');
 
@@ -43,7 +43,7 @@
 		}
 	}
 	function window_deviceorientation(e) {
-		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha - o.org_street)) * -1;
+		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha - o.org_street) + o.street_width);
 		console.log(Math.floor(e.alpha - o.org_street));
 		$('.street_all').css('left',dis);
 	}
