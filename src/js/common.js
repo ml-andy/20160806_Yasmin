@@ -20,6 +20,7 @@
 		o.street_width = $('.street').eq(0).width();
 		$('.street').eq(1).css('left',o.street_width);
 		$('.street_all').css('margin-left',o.street_width*-1);
+		setTimeout(function(){ iknow_click(); },5300);
 		window.addEventListener('deviceorientation', function(e){
 			window_deviceorientation(e);
 		});
@@ -81,6 +82,8 @@
 	}
 	function street_move(){
 		o.street_width = $('.street').eq(0).width();
+		$('.street').eq(1).css('left',o.street_width);
+		$('.street_all').css('margin-left',o.street_width*-1);
 		var dis = Math.floor(o.street_width / 360 * Math.floor( o.street_alpha - o.org_street) + $(window).width());
 		$('.street_all').css('left',dis);
 	}

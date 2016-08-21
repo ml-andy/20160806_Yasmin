@@ -224,8 +224,9 @@ $vpw:0;
 			}
 			.street_all_in{
 				@include alt(auto);
-				height: 150vh;
-				top: -50vh;
+				height: 156vh;
+				top: auto;
+				bottom: -10.5vh;
 			}
 			.street{
 				@include alt(auto);
