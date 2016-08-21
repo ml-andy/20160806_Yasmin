@@ -4,11 +4,9 @@
 		wrp: $('.wrapper'),
 		loading: $('.loading'),
 		menu_timeout:'',
-		org_street: 156
+		org_street: 179
 	};
 	$('.street').clone().appendTo('.street_all');
-	alert(6);
-
 
 	//AddListener
 	$('.iknow_btn').on('click',iknow_click);
@@ -23,7 +21,6 @@
 			window_deviceorientation(e);
 		});
 	}
-
 
 	//Event
 	function iknow_click(){
