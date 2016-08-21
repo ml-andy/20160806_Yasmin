@@ -49,7 +49,7 @@
 		function _touchmove(e){
 			if(device.mobile()){e = e.originalEvent.touches[0];}
             drag_left = e.pageX - og_left;
-			o.org_street = tmp_org_street - drag_left / o.street_width * 360;
+			o.org_street = tmp_org_street - drag_left / $(window).width() * 120;
 			if(device.mobile()){
 				if(o.org_street < 0) o.org_street = o.org_street + 360;
 				else if(o.org_street > 360) o.org_street = o.org_street -360;
