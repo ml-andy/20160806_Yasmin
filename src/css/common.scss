@@ -216,11 +216,9 @@ $vpw:0;
 			@include alt(auto);
 			&.move{
 				.street_all_in{
-					width: auto;
-					height: 120vh;
-					top: -10vh;
-					// left: 84vh;
+					@include transform(scale(0.8));
 				}
+				
 			}
 			.street_all_in{
 				@include alt(auto);
