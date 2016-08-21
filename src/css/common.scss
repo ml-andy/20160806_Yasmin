@@ -195,12 +195,12 @@ $vpw:0;
 		overflow: hidden;
 		z-index: 1;
 		.tip_box{
-			@include alb;
+			@include alt;
 			background-image: url(../images/tip_box.png);
 			background-repeat: no-repeat;
 			background-size: contain;
 			background-position: center center;
-			z-index: 1;
+			z-index: 3;
 			background-color: rgba(0,0,0,0.7);
 			.iknow_btn{
 				@include albvw(342,77,0,110,-171);
@@ -210,6 +210,99 @@ $vpw:0;
 				background-position: center center;
 				cursor: pointer;
 				left: 50%;
+			}
+		}
+		.evnet_box{
+			@include alb;
+			height: getVH(164);
+			z-index: 2;
+			&.on{
+				.box{
+					z-index: 2;
+					.icon{
+						opacity: 1;
+					}
+				}
+			}
+			.box{
+				@include alt;
+				z-index: 0;
+				overflow: hidden;
+				.icon{
+					@include altvw(91,91,32,50);
+					background-image: url(../images/event_icon4.png);
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center center;
+					z-index: 1;
+					transition:0.3s;
+					opacity: 0;
+					span{
+						@include alt;
+						background-image: url(../images/event_icon3.png);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+						@include animation(evnet_box_icon 1s 0s infinite linear);
+					}
+				}
+				.box_word{
+					@include alt;
+					z-index: 2;
+					span{
+						@include alt;
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center getVW(12);
+						transition: 0.3s;
+						opacity: 0;
+						&.on{ opacity: 1; }
+						&.w1{ background-image: url(../images/event_word_1.png); }
+						&.w2{ background-image: url(../images/event_word_2.png); }
+						&.w3{ background-image: url(../images/event_word_3.png); }
+						&.w4{ background-image: url(../images/event_word_4.png); }
+						&.w5{ background-image: url(../images/event_word_5.png); }
+					}
+					
+				}
+				canvas{
+					@include altvw(750,260);
+					z-index: 0;
+				}
+			}
+			.event_line{
+				@include alt;
+				background-image: url(../images/event_icon2.png);
+				background-repeat: repeat-x;
+				background-size: getVW(111) getVW(5);
+				background-position: left getVW(53);
+				z-index: 1;
+				.icon{
+					@include altvw(40,40,0,35);
+					background-image: url(../images/event_icon1.png);
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center center;
+					cursor: pointer;
+					&:nth-child(1){ left: getVW(79); }
+					&:nth-child(2){ left: getVW(215); }
+					&:nth-child(3){ left: getVW(351); }
+					&:nth-child(4){ left: getVW(486); }
+					&:nth-child(5){ left: getVW(622); }
+					&:before{
+						@include alt;
+						content:"";
+						opacity: 0;
+						transition:0.3s;
+						background-image: url(../images/event_icon4.png);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+					}
+					&.on{
+						&:before{ opacity: 1; }
+					}
+				}
 			}
 		}
 		.street_all{
@@ -224,18 +317,106 @@ $vpw:0;
 			}
 			.street_all_in{
 				@include alt(auto);
-				height: 156vh;
+				width: getVH(20880);
+				height: getVH(2088);
 				top: auto;
 				bottom: -10.5vh;
 			}
 			.street{
 				@include alt(auto);
 				z-index: 0;
+				.event_point_box{
+					@include alt;
+					z-index: 2;
+					.event_point{
+						@include alt(1.245%,0);
+						height: count_point_t(131);
+						background-image: url(../images/event_icon4.png);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+						z-index: 1;
+						cursor: pointer;
+						&:nth-child(1){
+							left: count_point_l(1071);
+							top: count_point_t(1155);
+						}
+						&:nth-child(2){
+							left: count_point_l(2743);
+							top: count_point_t(1023);
+						}
+						&:nth-child(3){
+							left: count_point_l(4742);
+							top: count_point_t(1125);
+						}
+						&:nth-child(4){
+							left: count_point_l(5601);
+							top: count_point_t(1088);
+						}
+						&:nth-child(5){
+							left: count_point_l(7903);
+							top: count_point_t(924);
+						}
+						&:before{
+							content:"";
+							@include alt;
+							background-image: url(../images/event_icon3.png);
+							background-repeat: no-repeat;
+							background-size: contain;
+							background-position: center center;
+							@include animation(evnet_box_icon 1s 0s infinite linear);
+						}
+						
+					}
+				}
+				.guy{
+					@include alt;
+					z-index: 1;
+					.cafe_girl{
+						position: absolute;
+						width: count_point_l(355);
+						height: count_point_t(376);
+						left: count_point_l(2634);
+						top: count_point_t(1161);
+						background-image: url(../images/cafe_girl.gif);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+					}
+					.photographers{
+						position: absolute;
+						width: count_point_l(289);
+						height: count_point_t(526);
+						left: count_point_l(4844);
+						top: count_point_t(1166);
+						background-image: url(../images/photographers.gif);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+					}
+					.play_phone{
+						position: absolute;
+						width: count_point_l(252);
+						height: count_point_t(458);
+						left: count_point_l(7815);
+						top: count_point_t(1093);
+						background-image: url(../images/play_phone.gif);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+					}
+				}
 				img{
 					width: auto;
 					height: 100%;
+					z-index: 0;
 				}
 			}
 		}
+	}
+	@include keyframes(evnet_box_icon) {
+		0% {opacity: .3;}
+		50% {opacity: 1;}
+		100% {opacity: .3;}
 	}
 }

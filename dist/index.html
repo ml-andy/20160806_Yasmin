@@ -16,6 +16,10 @@
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 <!---->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.createjs.com/easeljs-0.8.2.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.8.1.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.6.1.min.js"></script>
 <!--css-->
 <link rel="stylesheet" href="css/common.css"/>
 <!--js-->
@@ -45,7 +49,7 @@
 		</div>
 	</div>
 	<div class="pop">
-
+		
 	</div>
 	<div class="stage menuDom">
 		<div class="tip_box">
@@ -53,8 +57,17 @@
 		</div>
 		<div class="evnet_box">
 			<div class="box">
-				<div class="icon"></div>
-				<div class="box_word"></div>
+				<div class="icon">
+					<span></span>
+				</div>
+				<div class="box_word">
+					<span class="w1"></span>
+					<span class="w2"></span>
+					<span class="w3"></span>
+					<span class="w4"></span>
+					<span class="w5"></span>
+				</div>
+				<canvas id="evnet_box_bg" width="750" height="260"></canvas>
 			</div>
 			<div class="event_line">
 				<div class="icon"></div>
@@ -67,6 +80,18 @@
 		<div class="street_all">
 			<div class="street_all_in">
 				<div class="street">
+					<div class="event_point_box">
+						<div class="event_point cinema"></div>
+						<div class="event_point cafe_girl"></div>
+						<div class="event_point photographers"></div>
+						<div class="event_point medical"></div>
+						<div class="event_point play_phone"></div>
+					</div>
+					<div class="guy">
+						<div class="cafe_girl"></div>
+						<div class="photographers"></div>
+						<div class="play_phone"></div>
+					</div>
 					<img src="images/all_street.jpg">
 				</div>
 			</div>

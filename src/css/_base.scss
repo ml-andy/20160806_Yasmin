@@ -270,6 +270,16 @@ img{vertical-align:top;}
     @return ($aa / 750) * 100vw;
   }
 }
+@function getVH($aa) {
+  @return ($aa / 1334) * 100vh;
+}
+@function count_point_l($aa) {
+  @return ($aa / 10440) * 100%;
+}
+@function count_point_t($aa) {
+  @return ($aa / 2088) * 100%;
+}
+
 // .my-module {
 //   width: defultfc(650px, 1000px);
 // }
