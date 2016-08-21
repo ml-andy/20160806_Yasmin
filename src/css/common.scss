@@ -188,9 +188,9 @@ $vpw:0;
 	}
 	.pop{
 		@include flt;
-		@include font(18px,21px,#fff,bolder);
-		background-color: rgba(0,0,0,0.7);
-		// display: none;
+		// @include font(18px,21px,#fff,bolder);
+		// background-color: rgba(0,0,0,0.7);
+		display: none;
 		z-index: 8;
 	}
 	.stage{

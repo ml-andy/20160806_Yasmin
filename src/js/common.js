@@ -59,6 +59,7 @@
 			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
 			$('.evnet_box').addClass('on');
 			$('.evnet_box').find('span').removeClass('on').eq(_n).addClass('on');
+			$('.event_line').find('.icon').removeClass('on').eq( _n - 1).addClass('on');
 		}else{
 			if(o.now_event == 0) return;
 			else o.now_event = 0;
@@ -67,6 +68,7 @@
 			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
 			$('.evnet_box').removeClass('on');
 			$('.evnet_box').find('span').removeClass('on');
+			$('.event_line').find('.icon').removeClass('on')
 		}
 	}
 	function event_box_bg_complete(){
@@ -144,7 +146,7 @@
 		$('.street').eq(1).css('left',o.street_width);
 		$('.street_all').css('margin-left',o.street_width*-1);
 		o.street_deg = Math.floor( o.street_alpha - o.org_street);
-		$('.pop').html(o.street_deg);
+		// $('.pop').html(o.street_deg);
 		var dis = Math.floor(o.street_width / 360 * o.street_deg + $(window).width());
 		$('.street_all').css('left',dis);
 	}
