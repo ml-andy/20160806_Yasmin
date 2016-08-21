@@ -43,6 +43,29 @@ $vpw:0;
 			.bottom{ @include transform(rotateZ(-45deg)); top: getVW(42);}
 		}
 	}
+	.sound_btn{
+		@include artvw(60,60,29,92);
+		background-image: url(../images/sound_on.png);
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center center;
+		z-index: 100;
+		&.off{
+			&:before{
+				opacity: 1;
+			}
+		}
+		&:before{
+			@include alt;
+			transition:0.3s;
+			background-image: url(../images/sound_off.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center center;
+			z-index: 1;
+			opacity: 0;
+		}
+	}
 	.menu{
 		@include flt;
 		z-index: 0;
@@ -173,12 +196,26 @@ $vpw:0;
 		z-index: 1;
 		.tip_box{
 			@include alb;
-			@include font(15px,18px,#000);
+			background-image: url(../images/tip_box.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center center;
 			z-index: 1;
-			background-color: rgba(255,255,255,0.8);
+			background-color: rgba(0,0,0,0.7);
+			.iknow_btn{
+				@include albvw(342,77,0,110,-171);
+				background-image: url(../images/iknow_btn.png);
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center center;
+				cursor: pointer;
+				left: 50%;
+			}
 		}
 		.street_all{
 			@include alt(auto);
+			height: 150vh;
+			top: -50vh;
 			.street{
 				@include alt(auto);
 				z-index: 0;

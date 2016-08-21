@@ -3,11 +3,14 @@
 	var o ={
 		wrp: $('.wrapper'),
 		loading: $('.loading'),
-		menu_timeout:''
+		menu_timeout:'',
+		org_street: 204
 	};
+	$('.street').clone().appendTo('.street_all');
 
 
 	//AddListener
+	$('.iknow_btn').on('click',iknow_click);
 	$('.menubtn').click(menubtn_click);
 	$(window).load(window_load);
 	function window_load(){
@@ -22,6 +25,9 @@
 
 
 	//Event
+	function iknow_click(){
+		$('.tip_box').fadeOut();
+	}
 	function menubtn_click(){
 		if($(this).hasClass('on')){
 			$('.menuDom').removeClass('on');
@@ -37,7 +43,8 @@
 		}
 	}
 	function window_deviceorientation(e) {
-		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha - 180)) * -1;
+		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha - o.org_street)) * -1;
+		console.log(Math.floor(e.alpha - o.org_street));
 		$('.street_all').css('left',dis);
 	}
 	
