@@ -215,8 +215,10 @@ $vpw:0;
 		.street_all{
 			@include alt(auto);
 			&.move{
+				// transition: 0.1s;
+				// transition-timing-function: ease-out;
 				.street_all_in{
-					@include transform(scale(0.8));
+					// @include transform(scale(0.8));
 				}
 				
 			}
