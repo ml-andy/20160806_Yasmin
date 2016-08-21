@@ -75,9 +75,12 @@
 	function StageListenter(){
 		if(o.street_deg >= -62 && o.street_deg <= -42) play_event_box(true,1);
 		else if(o.street_deg >= -120 && o.street_deg <= -100) play_event_box(true,2);
-		else if(o.street_deg >= -190 && o.street_deg <= -170) play_event_box(true,3);
+		else if(o.street_deg >= -180 && o.street_deg <= -170) play_event_box(true,3);
+		else if(o.street_deg >= 170 && o.street_deg <= 180) play_event_box(true,3);
 		else if(o.street_deg >= -218 && o.street_deg <= -198) play_event_box(true,4);
+		else if(o.street_deg >= 140 && o.street_deg <= 160) play_event_box(true,4);
 		else if(o.street_deg >= -297 && o.street_deg <= -277) play_event_box(true,5);
+		else if(o.street_deg >= 60 && o.street_deg <= 80) play_event_box(true,5);
 		else play_event_box(false);
 
 		o.event_box_bg_stage.update();
