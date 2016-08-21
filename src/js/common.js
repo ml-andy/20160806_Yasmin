@@ -7,7 +7,9 @@
 		iknow_timeout:'',
 		org_street: 179,
 		street_alpha: 0,
-		street_ctrl: true
+		street_ctrl: true,
+		street_deg:0,
+		now_event:0
 	};
 	$('.street').clone().appendTo('.street_all_in');
 	o.event_box_bg = {
@@ -18,17 +20,16 @@
 			show:{
 					frames: [0,8,1,9,2,10,3,11,4,12,5,13,6,14,7],
 					speed: 1
+			},
+			backshow:{
+					frames: [7,14,6,13,5,12,4,11,3,10,2,9,1,8,0],
+					speed: 1
 			}
 		}
 	};
 	o.event_box_bg_spriteSheet = new createjs.SpriteSheet(o.event_box_bg);
 	o.event_box_bg_canvas = document.getElementById("evnet_box_bg");
 	o.event_box_bg_stage = new createjs.Stage(o.event_box_bg_canvas);
-	o.event_box_bg_mc = o.event_box_bg_stage.addChild(new createjs.Sprite(o.event_box_bg_spriteSheet, "show"));
-	o.event_box_bg_mc.stop();
-	o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
-	
-
 	createjs.Ticker.setFPS(30);
 	createjs.Ticker.addEventListener("tick", StageListenter);
 
@@ -49,15 +50,36 @@
 	}
 
 	//Event
-	function play_event_box(_n){
-		o.event_box_bg_mc.play();
-		$('.evnet_box').addClass('on');
-		$('.evnet_box').find('span').removeClass('on').eq(_n).addClass('on');
+	function play_event_box(_t,_n){
+		if(_t){
+			if(o.now_event == _n) return;
+			else o.now_event = _n;
+			 o.event_box_bg_stage.removeAllChildren();
+			o.event_box_bg_mc = o.event_box_bg_stage.addChild(new createjs.Sprite(o.event_box_bg_spriteSheet, "show"));
+			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
+			$('.evnet_box').addClass('on');
+			$('.evnet_box').find('span').removeClass('on').eq(_n).addClass('on');
+		}else{
+			if(o.now_event == 0) return;
+			else o.now_event = 0;
+			o.event_box_bg_stage.removeAllChildren();
+			o.event_box_bg_mc = o.event_box_bg_stage.addChild(new createjs.Sprite(o.event_box_bg_spriteSheet, "backshow"));
+			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
+			$('.evnet_box').removeClass('on');
+			$('.evnet_box').find('span').removeClass('on');
+		}
 	}
 	function event_box_bg_complete(){
 		o.event_box_bg_mc.stop();
 	}
 	function StageListenter(){
+		if(o.street_deg >= -62 && o.street_deg <= -42) play_event_box(true,1);
+		else if(o.street_deg >= -120 && o.street_deg <= -100) play_event_box(true,2);
+		else if(o.street_deg >= -190 && o.street_deg <= -170) play_event_box(true,3);
+		else if(o.street_deg >= -218 && o.street_deg <= -198) play_event_box(true,4);
+		else if(o.street_deg >= -297 && o.street_deg <= -277) play_event_box(true,5);
+		else play_event_box(false);
+
 		o.event_box_bg_stage.update();
 	}
 	function street_all(){
@@ -93,7 +115,6 @@
 	function iknow_click(){
 		clearTimeout(o.iknow_timeout);
 		$('.tip_box').fadeOut();
-		// play_event_box(2);
 	}
 	function menubtn_click(){
 		if($(this).hasClass('on')){
@@ -119,7 +140,8 @@
 		o.street_width = $('.street').eq(0).width();
 		$('.street').eq(1).css('left',o.street_width);
 		$('.street_all').css('margin-left',o.street_width*-1);
-		var dis = Math.floor(o.street_width / 360 * Math.floor( o.street_alpha - o.org_street) + $(window).width());
+		o.street_deg = Math.floor( o.street_alpha - o.org_street);
+		var dis = Math.floor(o.street_width / 360 * o.street_deg + $(window).width());
 		$('.street_all').css('left',dis);
 	}
 	
