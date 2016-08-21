@@ -43,7 +43,7 @@
 		}
 	}
 	function window_deviceorientation(e) {
-		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha - o.org_street) + o.street_width);
+		var dis = Math.floor(o.street_width / 360 * Math.floor(e.alpha - o.org_street) + o.street_width - $(window).width());
 		console.log(Math.floor(e.alpha - o.org_street));
 		$('.street_all').css('left',dis);
 	}
