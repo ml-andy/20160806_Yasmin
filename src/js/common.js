@@ -8,7 +8,7 @@
 		street_alpha: 0,
 		street_ctrl: true
 	};
-	$('.street').clone().appendTo('.street_all');
+	$('.street').clone().appendTo('.street_all_in');
 
 	//AddListener
 	$('.street_all').each(street_all);
@@ -35,12 +35,14 @@
 		_this.on('touchstart', function(e){
 			e.preventDefault();
 			if(device.mobile()){e = e.originalEvent.touches[0];}
-			tmp_org_street = o.org_street;
-            og_left = e.pageX;
+			og_left = e.pageX;
+			_this.addClass('move');
 			o.street_ctrl = false;
+			tmp_org_street = o.org_street;
 			_this.bind('touchmove', _touchmove);
 		});
 		_this.on('touchend', function(){
+			_this.removeClass('move');
 			o.street_ctrl = true;
 			_this.unbind('touchmove', _touchmove);
 		});
@@ -78,6 +80,7 @@
 		if(o.street_ctrl) street_move();
 	}
 	function street_move(){
+		o.street_width = $('.street').eq(0).width();
 		var dis = Math.floor(o.street_width / 360 * Math.floor( o.street_alpha - o.org_street) + $(window).width());
 		$('.street_all').css('left',dis);
 	}

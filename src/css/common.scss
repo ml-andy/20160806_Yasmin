@@ -214,8 +214,19 @@ $vpw:0;
 		}
 		.street_all{
 			@include alt(auto);
-			height: 150vh;
-			top: -50vh;
+			&.move{
+				.street_all_in{
+					height: 120vh;
+					top: -10vh;
+					left: 84vh;
+				}
+			}
+			.street_all_in{
+				@include alt(auto);
+				transition:0.5s;
+				height: 150vh;
+				top: -25vh;
+			}
 			.street{
 				@include alt(auto);
 				z-index: 0;
