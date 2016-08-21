@@ -30,11 +30,13 @@
 	function street_all(){
 		var _this = $(this),
 			og_left = 0,
-			drag_left = 0;
+			drag_left = 0,
+			tmp_org_street;
 
 		_this.on('touchstart', function(e){
 			e.preventDefault();
 			if(device.mobile()){e = e.originalEvent.touches[0];}
+			tmp_org_street = o.org_street;
             og_left = e.pageX;
 			o.street_ctrl = false;
 			_this.bind('touchmove', _touchmove);
@@ -47,7 +49,7 @@
 		function _touchmove(e){
 			if(device.mobile()){e = e.originalEvent.touches[0];}
             drag_left = e.pageX - og_left;
-			o.org_street -= drag_left / o.street_width * 360;
+			o.org_street = tmp_org_street - drag_left / o.street_width * 360;
 			if(device.mobile()){
 				if(o.org_street < 0) o.org_street = o.org_street + 360;
 				else if(o.org_street > 360) o.org_street = o.org_street -360;
