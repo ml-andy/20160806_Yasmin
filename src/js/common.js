@@ -141,6 +141,7 @@
 		$('.street').eq(1).css('left',o.street_width);
 		$('.street_all').css('margin-left',o.street_width*-1);
 		o.street_deg = Math.floor( o.street_alpha - o.org_street);
+		$('.pop').html(o.street_deg);
 		var dis = Math.floor(o.street_width / 360 * o.street_deg + $(window).width());
 		$('.street_all').css('left',dis);
 	}
