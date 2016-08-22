@@ -12,6 +12,8 @@
 		now_event:0
 	};
 	$('.street').clone().appendTo('.street_all_in');
+
+	//createjs
 	o.event_box_bg = {
 		images: ["images/event_box_bg.png"],
 		frames: {width:750, height:260},
@@ -28,12 +30,37 @@
 		}
 	};
 	o.event_box_bg_spriteSheet = new createjs.SpriteSheet(o.event_box_bg);
-	o.event_box_bg_canvas = document.getElementById("evnet_box_bg");
+	o.event_box_bg_canvas = document.getElementById("event_box_bg");
 	o.event_box_bg_stage = new createjs.Stage(o.event_box_bg_canvas);
 	createjs.Ticker.setFPS(30);
 	createjs.Ticker.addEventListener("tick", StageListenter);
 
+	images = images||{};
+	ss = ss||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadFile({src:"images/event_popup_atlas_.json", type:"spritesheet", id:"event_popup_atlas_"}, true);
+	loader.loadManifest(lib.properties.manifest);
+	
+	function handleFileLoad(evt) {
+		if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+	}
+
+	function handleComplete(evt) {
+		var queue = evt.target;
+		ss["event_popup_atlas_"] = queue.getResult("event_popup_atlas_");
+		
+		o.event_popup_2_stage = new createjs.Stage(document.getElementById("event_popup_2_ani"));
+		o.event_popup_2_ani = o.event_popup_2_stage.addChild(new lib.event02());
+		o.event_popup_2_ani.setTransform(375,667).gotoAndStop(0);
+		o.event_popup_2_stage.update();
+	}
+
 	//AddListener
+	$('.event_popup .closebtn').click(function(){ show_pop(false); })
+	$('.event_popup_1_videobtn').click( playvideo );
 	$('.street_all').each(street_all);
 	$('.iknow_btn').on('click',iknow_click);
 	$('.menubtn').click(menubtn_click);
@@ -50,30 +77,6 @@
 	}
 
 	//Event
-	function play_event_box(_t,_n){
-		if(_t){
-			if(o.now_event == _n) return;
-			else o.now_event = _n;
-			 o.event_box_bg_stage.removeAllChildren();
-			o.event_box_bg_mc = o.event_box_bg_stage.addChild(new createjs.Sprite(o.event_box_bg_spriteSheet, "show"));
-			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
-			$('.evnet_box').addClass('on');
-			$('.evnet_box').find('span').removeClass('on').eq(_n).addClass('on');
-			$('.event_line').find('.icon').removeClass('on').eq( _n - 1).addClass('on');
-		}else{
-			if(o.now_event == 0) return;
-			else o.now_event = 0;
-			o.event_box_bg_stage.removeAllChildren();
-			o.event_box_bg_mc = o.event_box_bg_stage.addChild(new createjs.Sprite(o.event_box_bg_spriteSheet, "backshow"));
-			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
-			$('.evnet_box').removeClass('on');
-			$('.evnet_box').find('span').removeClass('on');
-			$('.event_line').find('.icon').removeClass('on')
-		}
-	}
-	function event_box_bg_complete(){
-		o.event_box_bg_mc.stop();
-	}
 	function StageListenter(){
 		if(o.street_deg >= -62 && o.street_deg <= -42) play_event_box(true,1);
 		else if(o.street_deg >= -120 && o.street_deg <= -100) play_event_box(true,2);
@@ -86,6 +89,41 @@
 		else play_event_box(false);
 
 		o.event_box_bg_stage.update();
+		if(o.event_popup_2_stage) o.event_popup_2_stage.update();
+	}
+	function playvideo(){
+		$('.event_popup_1_videobtn').fadeOut();
+		$('#event_popup_1_video')[0].play();
+	}
+	function show_pop(_t,_n){
+		if(_t){
+			$('.event_popup .popup').eq(_n).show();
+			$('.event_popup').fadeIn(300,function(){ $('.event_popup .popup').eq(_n).addClass('on'); });
+		}else $('.event_popup').fadeOut();
+	}
+	function play_event_box(_t,_n){
+		if(_t){
+			if(o.now_event == _n) return;
+			else o.now_event = _n;
+			 o.event_box_bg_stage.removeAllChildren();
+			o.event_box_bg_mc = o.event_box_bg_stage.addChild(new createjs.Sprite(o.event_box_bg_spriteSheet, "show"));
+			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
+			$('.event_box').addClass('on');
+			$('.event_box').find('span').removeClass('on').eq(_n).addClass('on');
+			$('.event_line').find('.icon').removeClass('on').eq( _n - 1).addClass('on');
+		}else{
+			if(o.now_event == 0) return;
+			else o.now_event = 0;
+			o.event_box_bg_stage.removeAllChildren();
+			o.event_box_bg_mc = o.event_box_bg_stage.addChild(new createjs.Sprite(o.event_box_bg_spriteSheet, "backshow"));
+			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
+			$('.event_box').removeClass('on');
+			$('.event_box').find('span').removeClass('on');
+			$('.event_line').find('.icon').removeClass('on')
+		}
+	}
+	function event_box_bg_complete(){
+		o.event_box_bg_mc.stop();
 	}
 	function street_all(){
 		var _this = $(this),
