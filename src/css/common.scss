@@ -8,8 +8,9 @@ $vpw:0;
 		@include flt;
 		z-index: 99999;
 		background-color: #FFF;
+		overflow: hidden;
 		canvas{
-			@include alt;
+			@include amvw(750,1334);
 			z-index: 0;
 		}
 	}
@@ -45,25 +46,37 @@ $vpw:0;
 	}
 	.sound_btn{
 		@include artvw(60,60,29,92);
-		background-image: url(../images/sound_on.png);
-		background-repeat: no-repeat;
-		background-size: contain;
-		background-position: center center;
-		z-index: 100;
-		&.off{
-			&:before{
-				opacity: 1;
-			}
-		}
-		&:before{
+		overflow: hidden;
+		span{
 			@include alt;
-			transition:0.3s;
-			background-image: url(../images/sound_off.png);
+			z-index: 1;
+			background-image: url(../images/sound_on.png);
 			background-repeat: no-repeat;
 			background-size: contain;
 			background-position: center center;
-			z-index: 1;
-			opacity: 0;
+			z-index: 100;
+			cursor: pointer;
+			&:before{
+				content:"";
+				@include alt;
+				transition:0.3s;
+				background-image: url(../images/sound_off.png);
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center center;
+				z-index: 1;
+				opacity: 0;
+			}
+		}
+		&.off{
+			span{
+				&:before{
+					opacity: 1;
+				}
+			}
+		}
+		audio{
+			z-index: 0;
 		}
 	}
 	.menu{
@@ -206,7 +219,7 @@ $vpw:0;
 			cursor: pointer;
 			&.on{
 				top: auto;
-				bottom: 0;
+				@include arbvw(104,104);
 				background-image: url(../images/btnclose2.png);
 			}
 		}
@@ -334,10 +347,12 @@ $vpw:0;
 				}
 			}
 			&.event4{
+				background-color: #fff;
 				.btn_box{
 					@include altvw(437,272,0,1113,-218);
 					left: 50%;
-					transition:0.5s;
+					display: none;
+					z-index: 2;
 					.btn{
 						@include altvw(437,77);
 						background-repeat: no-repeat;
@@ -356,7 +371,7 @@ $vpw:0;
 				}
 				canvas{
 					@include alt;
-					z-index: 0;
+					z-index: 1;
 				}
 			}
 			&.event5{
@@ -379,7 +394,7 @@ $vpw:0;
 			@include alt;
 			background-image: url(../images/tip_box.png);
 			background-repeat: no-repeat;
-			background-size: contain;
+			background-size: 100% auto;
 			background-position: center center;
 			z-index: 3;
 			background-color: rgba(0,0,0,0.7);
@@ -391,6 +406,13 @@ $vpw:0;
 				background-position: center center;
 				cursor: pointer;
 				left: 50%;
+				z-index: 1;
+			}
+			canvas{
+				@include altvw(750,1334);
+				@include transform(translateY(-50%));
+				top: 50%;
+				z-index: 0;
 			}
 		}
 		.event_box{
@@ -488,20 +510,24 @@ $vpw:0;
 		}
 		.street_all{
 			@include alt(auto);
+			// transition: 0.1s;
+			// transition-timing-function: ease-out;
 			&.move{
-				// transition: 0.1s;
-				// transition-timing-function: ease-out;
+				// transition: 0.01s;
+				transition-timing-function: ease-out;
 				.street_all_in{
-					// @include transform(scale(0.8));
+					@include transform(scale(0.99));
 				}
 				
 			}
 			.street_all_in{
 				@include alt(auto);
-				width: getVH(20880);
-				height: getVH(2088);
+				width: getVH(15660);
+				height: getVH(1566);
 				top: auto;
 				bottom: -10.5vh;
+				transition: 0.3s;
+				transition-timing-function: ease-out;
 			}
 			.street{
 				@include alt(auto);

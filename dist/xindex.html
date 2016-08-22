@@ -25,6 +25,7 @@
 <!--js-->
 <script src="js/device.min.js"></script>
 <script src="js/loading_ani.js"></script>
+<script src="js/tip_box_ani.js"></script>
 <script src="js/event04.js"></script>
 <script src="js/event_popup.js"></script>
 <script src="js/common.js"></script>
@@ -38,7 +39,12 @@
 		<span class="middle"></span>
 		<span class="bottom"></span>
 	</div>
-	<div class="sound_btn"></div>
+	<div class="sound_btn off">
+		<span></span>
+		<audio id="bgm" preload="auto" loop="loop" controls="controls">
+        	<source src="images/bgm.mp3">
+    	</audio>
+	</div>
 	<div class="stage_top">
 		<div class="logo"></div>
 	</div>
@@ -66,29 +72,29 @@
 					</video>
 				</div>
 				<div class="btn_box">
-					<div class="btn"></div>
-					<div class="btn"></div>
-					<div class="btn"></div>
+					<div class="btn gotobuy_btn"></div>
+					<div class="btn getsecret_btn"></div>
+					<div class="btn share_btn"></div>
 				</div>
 			</div>
 			<div class="popup event3">
 				<div class="btn_box">
-					<div class="btn"></div>
-					<div class="btn"></div>
+					<div class="btn getsecret_btn"></div>
+					<div class="btn share_btn"></div>
 				</div>
 				<canvas id="event_popup_3_ani" width="750" height="1334"></canvas>
 			</div>
 			<div class="popup event2">
 				<div class="btn_box">
-					<div class="btn"></div>
-					<div class="btn"></div>
+					<div class="btn unlock_btn"></div>
+					<div class="btn share_btn"></div>
 				</div>
 				<canvas id="event_popup_2_ani" width="750" height="1334"></canvas>
 			</div>
 			<div class="popup event4">
 				<div class="btn_box">
-					<div class="btn"></div>
-					<div class="btn"></div>
+					<div class="btn gotobuy_btn"></div>
+					<div class="btn more_msg_btn"></div>
 				</div>
 				<canvas id="event_popup_4_ani" width="750" height="1334"></canvas>
 			</div>
@@ -100,6 +106,7 @@
 	<div class="stage menuDom">
 		<div class="tip_box">
 			<div class="iknow_btn"></div>
+			<canvas id="tip_box" width="750" height="1334"></canvas>
 		</div>
 		<div class="event_box">
 			<div class="box">
