@@ -7,11 +7,11 @@ $vpw:0;
 	.loading{
 		@include flt;
 		z-index: 99999;
-		background-image: url(../images/loading.png);
-		background-repeat: no-repeat;
-		background-size: contain;
-		background-position: center center;
 		background-color: #FFF;
+		canvas{
+			@include alt;
+			z-index: 0;
+		}
 	}
 	.stage_top{
 		@include fltvw(750,92);
@@ -188,8 +188,8 @@ $vpw:0;
 	}
 	.event_popup{
 		@include flt;
-		// display: none;
-		overflow-y: scroll; /* has to be scroll, not auto */
+		display: none;
+		overflow-y: scroll;
 		-webkit-overflow-scrolling: touch;
 		z-index: 101;
 		.event_popup_in{
@@ -204,6 +204,11 @@ $vpw:0;
 			background-size: contain;
 			background-position: center top;
 			cursor: pointer;
+			&.on{
+				top: auto;
+				bottom: 0;
+				background-image: url(../images/btnclose2.png);
+			}
 		}
 		.popup{
 			@include alt;
@@ -278,7 +283,6 @@ $vpw:0;
 				}
 			}
 			&.event2{
-				display: block;
 				.btn_box{
 					@include altvw(750,77,0,1195);
 					z-index: 1;
@@ -287,6 +291,7 @@ $vpw:0;
 						background-repeat: no-repeat;
 						background-size: contain;
 						background-position: center center;
+						cursor: pointer;
 						&:nth-child(1){
 							left: getVW(20);
 							background-image: url(../images/event_popup_2_btn1.png);
@@ -303,10 +308,66 @@ $vpw:0;
 				}
 			}
 			&.event3{
+				background-color: rgba(255,255,255,0.6);
+				.btn_box{
+					@include altvw(750,77,0,1222);
+					z-index: 1;
+					.btn{
+						@include altvw(342,77);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+						cursor: pointer;
+						&:nth-child(1){
+							left: getVW(20);
+							background-image: url(../images/event_popup_3_btn.png);
+						}
+						&:nth-child(2){
+							left: getVW(390);
+							background-image: url(../images/event_popup_2_btn2.png);
+						}
+					}
+				}
+				canvas{
+					@include alt;
+					z-index: 0;
+				}
 			}
 			&.event4{
+				.btn_box{
+					@include altvw(437,272,0,1113,-218);
+					left: 50%;
+					transition:0.5s;
+					.btn{
+						@include altvw(437,77);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+						cursor: pointer;
+						&:nth-child(1){
+							top: 0;
+							background-image: url(../images/event_popup_4_btn1.png);
+						}
+						&:nth-child(2){
+							top: getVW(97);
+							background-image: url(../images/event_popup_4_btn2.png);
+						}
+					}
+				}
+				canvas{
+					@include alt;
+					z-index: 0;
+				}
 			}
 			&.event5{
+				background-color: rgba(0,0,0,0.7);
+				.pic{
+					@include artvw(299,331,52,85);
+					background-image: url(../images/event_popup_5_pic.png);
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center center;
+				}
 			}
 		}
 	}
