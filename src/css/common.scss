@@ -33,6 +33,10 @@ $vpw:0;
 		@include artvw(112,92);
 		z-index: 100;
 		cursor: pointer;
+		transition:0.3s;
+		&.off{
+			opacity: 0;
+		}
 		span{
 			@include altvw(53,7,29);
 			background-color: #ff7800;
@@ -79,6 +83,8 @@ $vpw:0;
 			}
 		}
 		audio{
+			@include am(1px,1px);
+			overflow: hidden;
 			z-index: 0;
 		}
 	}
@@ -193,24 +199,30 @@ $vpw:0;
 			}
 		}
 		.menu_logo{
-			@include albvw(298,40,0,102,0);
+			@include albvw(298,40,0,222,0);
 			left: 50%;
 			opacity: 0;
 			background-image: url(../images/menu_logo.png);
 			background-repeat: no-repeat;
 			background-size: contain;
 			background-position: center center;
+			&:before{
+				content:"";
+				@include altvw(101,101,0,62,-50);
+				left: 50%;
+				background-image: url(../images/Beijing_logo01.png);
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center center;
+			}
 		}
 	}
 	.event_popup{
 		@include flt;
 		display: none;
-		overflow-y: scroll;
-		-webkit-overflow-scrolling: touch;
 		z-index: 101;
 		.event_popup_in{
-			@include altvw(750,1334,0,0,-375);
-			left: 50%;
+			@include alt;
 		}
 		.closebtn{
 			@include artvw(104,104);
@@ -221,9 +233,8 @@ $vpw:0;
 			background-position: center top;
 			cursor: pointer;
 			&.on{
-				top: auto;
-				@include arbvw(104,104);
-				background-image: url(../images/btnclose2.png);
+				@include artvw(84,84,160,450);
+				background-image: url(../images/btn_close.png);
 			}
 		}
 		.popup{
@@ -234,15 +245,15 @@ $vpw:0;
 			&.event1{
 				background-image: url(../images/event_popup_1_bg.jpg);
 				background-repeat: no-repeat;
-				background-size: auto 100%;
+				background-size: getVW(1170) auto;
 				background-position: center top;
 				&.on{
 					.title{
-						top: getVW(113);
-						opacity: 1;
+						// top: getVW(113);
+						// opacity: 1;
 					}
 					.btn_box{
-						top: getVW(956);
+						bottom: getVW(40);
 						opacity: 1;
 					}
 				}
@@ -255,6 +266,7 @@ $vpw:0;
 					z-index: 1;
 					opacity: 0;
 					transition:0.5s;
+					display: none;
 				}
 				.video{
 					@include altvw(601,338,75,280);
@@ -273,8 +285,9 @@ $vpw:0;
 					}
 				}
 				.btn_box{
-					@include altvw(437,272,0,1334,-218);
+					@include albvw(437,272,0,-300,-218);
 					left: 50%;
+					transition-delay: 0.3s;
 					transition:0.5s;
 					opacity: 0;
 					.btn{
@@ -300,7 +313,7 @@ $vpw:0;
 			}
 			&.event2{
 				.btn_box{
-					@include altvw(750,77,0,1195);
+					@include albvw(750,77,0,40);
 					z-index: 1;
 					.btn{
 						@include altvw(342,77);
@@ -319,14 +332,15 @@ $vpw:0;
 					}
 				}
 				canvas{
-					@include alt;
+					@include altvw(750,1334,0,0,-375);
+					left: 50%;
 					z-index: 0;
 				}
 			}
 			&.event3{
 				background-color: rgba(255,255,255,0.6);
 				.btn_box{
-					@include altvw(750,77,0,1222);
+					@include albvw(750,77,0,40);
 					z-index: 1;
 					.btn{
 						@include altvw(342,77);
@@ -345,14 +359,15 @@ $vpw:0;
 					}
 				}
 				canvas{
-					@include alt;
+					@include altvw(750,1334,0,0,-375);
+					left: 50%;
 					z-index: 0;
 				}
 			}
 			&.event4{
 				background-color: #fff;
 				.btn_box{
-					@include altvw(437,272,0,1113,-218);
+					@include albvw(437,272,0,0,-218);
 					left: 50%;
 					display: none;
 					z-index: 2;
@@ -373,7 +388,8 @@ $vpw:0;
 					}
 				}
 				canvas{
-					@include alt;
+					@include altvw(750,1334,0,0,-375);
+					left: 50%;
 					z-index: 1;
 				}
 			}
@@ -479,9 +495,9 @@ $vpw:0;
 			.event_line{
 				@include alt;
 				background-image: url(../images/event_icon2.png);
-				background-repeat: repeat-x;
-				background-size: getVW(111) getVW(5);
-				background-position: left getVW(53);
+				background-repeat: no-repeat;
+				background-size: getVW(368) getVW(5);
+				background-position: getVW(99) getVW(53);
 				z-index: 1;
 				.icon{
 					@include altvw(40,40,0,35);
@@ -513,6 +529,7 @@ $vpw:0;
 		}
 		.street_all{
 			@include alt(auto);
+			margin-left: getVH(-10440);
 			// transition: 0.1s;
 			// transition-timing-function: ease-out;
 			&.move{
@@ -525,16 +542,19 @@ $vpw:0;
 			}
 			.street_all_in{
 				@include alt(auto);
-				width: getVH(15660);
-				height: getVH(1566);
+				width: getVH(20880);
+				height: getVH(2088);
 				top: auto;
-				bottom: -10.5vh;
+				bottom: -20vh;
 				transition: 0.3s;
 				transition-timing-function: ease-out;
 			}
 			.street{
 				@include alt(auto);
 				z-index: 0;
+				&:nth-child(2){
+					left: getVH(10440);
+				}
 				.event_point_box{
 					@include alt;
 					z-index: 2;
