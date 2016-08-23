@@ -11,7 +11,7 @@
 		iknow_timeout:'',
 		iknow_click:false,
 		event_box_bg_stage_play: false,
-		org_street: 110,
+		org_street: 179,
 		street_alpha: 0,
 		street_ctrl: true,
 		street_deg:0,
@@ -58,7 +58,7 @@
 	$('.menubtn').click(menubtn_click);
 	$(window).load(window_load);
 	function window_load(){
-		o.street_width = $('.street').eq(0).find('img').width();
+		o.street_width = $('.street').eq(0).width();
 		$('.street').eq(1).css('left',o.street_width);
 		$('.street_all').css('margin-left',o.street_width*-1);
 		o.loading_num +=1;
@@ -66,14 +66,14 @@
 	}
 	function check_loading(){
 		if(o.loading_num >=2){
-			setTimeout(function(){
-				window.addEventListener('deviceorientation', function(e){
-					window_deviceorientation(e);
-				});
+			// setTimeout(function(){
+				// window.addEventListener('deviceorientation', function(e){
+				// 	window_deviceorientation(e);
+				// });
 				o.tip_box_stage_play = true;
 				o.iknow_timeout = setTimeout(function(){ iknow_click(false);},5300);
 				o.loading.fadeOut(300,function(){ o.loading.remove(); o.loading_stage = false;});
-			},2000);
+			// },2000);
 		}
 	}
 	function creatjs_loading(){
@@ -85,7 +85,7 @@
 		var loader = new createjs.LoadQueue(false);
 		loader.addEventListener("fileload", handleFileLoad);
 		loader.addEventListener("complete", handleComplete);
-		loader.loadFile({src:"images/loading_ani_atlas_.json", type:"spritesheet", id:"loading_ani_atlas_"}, true);
+		loader.loadFile({src:"images/loading_pc_atlas_.json", type:"spritesheet", id:"loading_pc_atlas_"}, true);
 		loader.loadManifest(lib2.properties.manifest);
 		
 		function handleFileLoad(evt) {
@@ -94,8 +94,8 @@
 
 		function handleComplete(evt) {
 			var queue = evt.target;
-			ss["loading_ani_atlas_"] = queue.getResult("loading_ani_atlas_");
-			exportRoot = new lib2.loading_ani();
+			ss["loading_pc_atlas_"] = queue.getResult("loading_pc_atlas_");
+			exportRoot = new lib2.loading_pc();
 
 			o.loading_stage = new createjs.Stage(canvas);
 			o.loading_stage.addChild(exportRoot);
@@ -361,28 +361,15 @@
 	}
 	function street_all(){
 		var _this = $(this),
-			_img = _this.find('.street').find('img'),
 			og_left = 0,
 			drag_left = 0,
 			tmp_org_street;
 
-		_img.on('touchstart', function(e){
-			e.preventDefault();
-			if(device.mobile()){e = e.originalEvent.touches[0];}
-			og_left = e.pageX;
-			o.street_ctrl = false;
-			tmp_org_street = o.org_street;
-			_this.bind('touchmove', _touchmove);
-		});
-		_this.on('touchend', function(){
-			_this.removeClass('move');
-			o.street_ctrl = true;
-			_this.unbind('touchmove', _touchmove);
-		});
+		_this.bind('mousemove', _touchmove);
 
 		function _touchmove(e){
-			if(device.mobile()){e = e.originalEvent.touches[0];}
-			_this.addClass('move');
+            // o.street_alpha
+			// _this.addClass('move');
             drag_left = e.pageX - og_left;
 			o.org_street = tmp_org_street - drag_left / $(window).width() * 60;
 			if(o.org_street < 0) o.org_street = o.org_street + 360;
@@ -414,19 +401,18 @@
 			$('.menu').removeClass('off').addClass('on');
 		}
 	}
-	function window_deviceorientation(e) {
-		// o.street_alpha = Math.round(e.alpha / 10) *10;
-		o.street_alpha = e.alpha;
-		if(o.street_ctrl) street_move();
-	}
+	// function window_deviceorientation(e) {
+	// 	// o.street_alpha = Math.round(e.alpha / 10) *10;
+	// 	o.street_alpha = e.alpha;
+	// 	if(o.street_ctrl) street_move();
+	// }
 	function street_move(){
-		o.street_width = $('.street').eq(0).find('img').width();
+		o.street_width = $('.street').eq(0).width();
 		$('.street').eq(1).css('left',o.street_width);
 		$('.street_all').css('margin-left',o.street_width*-1);
 		// o.street_deg = Math.floor( o.street_alpha - o.org_street);
 		o.street_deg = o.street_alpha - o.org_street;
-		// if(o.street_deg < 90) o.street_deg = o.street_deg + 270;
-		// else if(o.street_deg > 270) o.street_deg = o.street_deg -270;
+
 		// if( o.street_ctrl ){
 			if(o.street_deg >= -62 && o.street_deg <= -42) play_event_box(true,1);
 			else if(o.street_deg >= -120 && o.street_deg <= -100) play_event_box(true,2);
@@ -440,7 +426,6 @@
 		// }
 		// $('.pop').html(o.street_deg);
 		o.dis = Math.floor(o.street_width / 360 * o.street_deg + $(window).width());
-		// o.dis = Math.floor(o.street_width / 360 * o.street_deg);		
 		$('.street_all').css('left',o.dis);
 	}
 	

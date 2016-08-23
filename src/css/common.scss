@@ -1,6 +1,4 @@
 @import "base.scss";
-$vpw:1;
-
 
 $vpw:0;
 @media screen and (max-width: 750px) {
@@ -9,9 +7,14 @@ $vpw:0;
 		z-index: 99999;
 		background-color: #FFF;
 		overflow: hidden;
+		background-image: url(../images/infinite.gif);
+		background-repeat: no-repeat;
+		background-size: getVW(279) getVW(131);
+		background-position: center center;
 		canvas{
 			@include amvw(750,1334);
 			z-index: 0;
+			background-color: #fff;
 		}
 	}
 	.stage_top{
@@ -514,9 +517,9 @@ $vpw:0;
 			// transition-timing-function: ease-out;
 			&.move{
 				// transition: 0.01s;
-				transition-timing-function: ease-out;
+				// transition-timing-function: ease-out;
 				.street_all_in{
-					@include transform(scale(0.99));
+					// @include transform(scale(0.99));
 				}
 				
 			}
@@ -535,6 +538,7 @@ $vpw:0;
 				.event_point_box{
 					@include alt;
 					z-index: 2;
+					pointer-events: none;
 					.event_point{
 						@include alt(1.245%,0);
 						height: count_point_t(131);
@@ -544,6 +548,7 @@ $vpw:0;
 						background-position: center center;
 						z-index: 1;
 						cursor: pointer;
+						pointer-events: auto;
 						&:nth-child(1){
 							left: count_point_l(1071);
 							top: count_point_t(1155);
@@ -579,6 +584,7 @@ $vpw:0;
 				.guy{
 					@include alt;
 					z-index: 1;
+					pointer-events: none;
 					.cafe_girl{
 						position: absolute;
 						width: count_point_l(355);

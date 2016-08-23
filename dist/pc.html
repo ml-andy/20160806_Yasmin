@@ -21,20 +21,21 @@
 <script src="js/movieclip-0.8.1.min.js"></script>
 <script src="js/preloadjs-0.6.1.min.js"></script>
 <!--css-->
-<link rel="stylesheet" href="css/common.css"/>
+<link rel="stylesheet" href="css/pc.css"/>
 <!--js-->
 <script src="js/device.min.js"></script>
-<script src="js/loading_ani.js"></script>
+<script src="js/loading_pc.js"></script>
 <script src="js/tip_box_ani.js"></script>
 <script src="js/event04.js"></script>
 <script src="js/event_popup.js"></script>
-<script src="js/common.js"></script>
+<script src="js/common_pc.js"></script>
 </head>
 <body>
 	<div class="loading">
-		<canvas id="loading" width="750" height="1334"></canvas>
+		<canvas id="loading" width="1920" height="1080"></canvas>
 	</div>
 	<div class="menubtn menuDom">
+        <div class="icon"></div>
 		<span class="top"></span>
 		<span class="middle"></span>
 		<span class="bottom"></span>
@@ -45,9 +46,6 @@
         	<source src="images/bgm.mp3">
     	</audio>
 	</div>
-	<div class="stage_top">
-		<div class="logo"></div>
-	</div>
 	<div class="menu">
 		<div class="menu_in">
 			<div class="title"></div>
@@ -56,12 +54,16 @@
 				<div class="menu_link m2"></div>
 				<div class="menu_link m3"></div>
 			</div>
-			<div class="menu_logo"></div>
 		</div>
 	</div>
+    <div class="footer">
+        <div class="footer_logo"></div>
+        <div class="footer_link">
+            <a href="#" target="blank">关于我们</a> | <a href="#" target="blank">使用条款</a> | <a href="#" target="blank">隐私保护声明</a> | <a href="#" target="blank">联系我们</a>
+        </div>
+    </div>
 	<div class="event_popup">
 		<div class="event_popup_in">
-			<div class="closebtn"></div>
 			<div class="popup event1">
 				<div class="title"></div>
 				<div class="video">
@@ -99,7 +101,10 @@
 				<canvas id="event_popup_4_ani" width="750" height="1334"></canvas>
 			</div>
 			<div class="popup event5">
-				<div class="pic"></div>
+				<div class="pic">
+                    <div class="closebtn"></div>
+                    <img src="images/pc_share.jpg">
+                </div>
 			</div>
 		</div>
 	</div>
