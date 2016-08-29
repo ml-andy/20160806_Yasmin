@@ -1,8 +1,10 @@
 ﻿$(document).ready(function(){
+	// track_pg('page01','正在載入');
 	//Init
 	var o ={
 		wrp: $('.wrapper'),
 		loading: $('.loading'),
+		mouse_pageX:$(window).width()/2,
 		dis: 0,
 		dis_tmp:0,
 		loading_num: 0,
@@ -11,30 +13,77 @@
 		iknow_timeout:'',
 		iknow_click:false,
 		event_box_bg_stage_play: false,
-		org_street: 179,
-		street_alpha: 0,
+		org_street: 110,
+		set_orgpoint:-30,
+		street_alpha: -30,
 		street_ctrl: true,
 		street_deg:0,
 		now_event:0,
 		tip_box_stage_play: false,
 		event_popup_2_stage_play: false,
+		event_popup_2_stage_play_timeout:'',
+		event_popup_2_stage_play_num: -1,
 		event_popup_3_stage_play: false,
+		event_popup_3_stage_play_timeout:'',
+		event_popup_3_stage_play_num: 0,
 		event_popup_4_stage_play: false,
+		event_popup_4_stage_play_timeout:'',
+		event_popup_4_stage_play_num: 0,
 		has_auto_play_pop:[]
 	};
 	$('.street').clone().appendTo('.street_all_in');
 	creatjs_loading();
-	
+	check_org_street();
 
 	//AddListener
+	$('.coc_qrcode').on('mouseover',coc_qrcode_over);
+	$('.coc_qrcode').on('mouseout',coc_qrcode_out);
+	$('.event4_animate .word1').on('click',event_popup_4_ani_click);
+	$('.event_popup_3_ani .word').on('click',event_popup_3_ani_click);
+	$('.event_line .icon').on('click',event_line_icon_click);
+	$('.event_line .icon').on('mouseout',event_line_icon_out);
 	$('.menu_link').on('click',menu_link_click);
 	$('.gotobuy_btn').click(function(){
+		//tracker
+		if(o.now_event == 1) track_btn('電影院popup_立刻入手',1);
+		else if(o.now_event == 4) track_btn('藥局popup_立刻入手',1);
 
+		window.open('http://www.360kad.com/product/65049.shtml?xc','blank');
 	});
 	$('.getsecret_btn').click(function(){
+		
+		//tracker
+		if(o.now_event == 1) track_btn('電影院popup_馬上GET秘訣',1);
+		else if(o.now_event == 2) track_btn('咖啡館popup_馬上get秘訣',1);
 
+		popup_ani_play(false);
+		$('.event_popup .popup').hide();
+		o.now_event = 4;
+		o.event_popup_4_stage_play_num = 0;
+		popup_ani_play(true);
+		$('.event_popup .popup').eq(o.now_event - 1).fadeIn(300,function(){
+			$('.event_popup .popup').eq(o.now_event - 1).addClass('on'); 
+		});
+	});
+	$('.unlock_btn').click(function(){
+		//tracker
+		track_btn('摩托車女神popup_解鎖神器',1);
+
+		popup_ani_play(false);
+		$('.event_popup .popup').hide();
+		o.now_event = 4;
+		o.event_popup_4_stage_play_num = 0;
+		popup_ani_play(true);
+		$('.event_popup .popup').eq(o.now_event - 1).fadeIn(300,function(){
+			$('.event_popup .popup').eq(o.now_event - 1).addClass('on'); 
+		});
 	});
 	$('.share_btn').click(function(){
+		//tracker
+		if(o.now_event == 1) track_btn('電影院popup_奔走相告',1);
+		else if(o.now_event == 2) track_btn('咖啡館popup_奔走相告',1);
+		else if(o.now_event == 3) track_btn('摩托車女神popup_奔走相告',1);
+
 		popup_ani_play(false);
 		$('.event_popup .popup').hide();
 		o.now_event = 5;
@@ -43,13 +92,19 @@
 			popup_ani_play(true);
 		});
 	});
-	$('.unlock_btn').click(function(){
-
-	});
 	$('.more_msg_btn').click(function(){
+		//tracker
+		track_btn('藥局popup_更多信息',1);
 
+		window.open('http://www.coclife.com','blank');
 	});
-	$('.sound_btn').click(sound_btn_click);
+	$('.sound_btn').click(function(){
+		if($('.sound_btn').hasClass('off')) track_btn('音樂播放',1);
+		else track_btn('音樂關閉',1);
+		sound_btn_click();
+	});
+	$('.event_point').on('mouseover', event_point_over);
+	$('.event_point').on('mouseout', event_point_out);
 	$('.event_point').click(event_point_click);
 	$('.event_popup .closebtn').click(function(){ show_pop(false); })
 	$('.event_popup_1_videobtn').click( playvideo );
@@ -59,22 +114,16 @@
 	$(window).load(window_load);
 	function window_load(){
 		o.street_width = $('.street').eq(0).width();
-		$('.street').eq(1).css('left',o.street_width);
-		$('.street_all').css('margin-left',o.street_width*-1);
 		o.loading_num +=1;
-		creatjs_tip_box();
+		createjs_event_box_bg();
 	}
 	function check_loading(){
-		if(o.loading_num >=2){
-			// setTimeout(function(){
-				// window.addEventListener('deviceorientation', function(e){
-				// 	window_deviceorientation(e);
-				// });
-				o.tip_box_stage_play = true;
-				o.iknow_timeout = setTimeout(function(){ iknow_click(false);},5300);
-				o.loading.fadeOut(300,function(){ o.loading.remove(); o.loading_stage = false;});
-			// },2000);
-		}
+		if(o.loading_num >=2) o.loading.fadeOut(300,function(){ 
+			o.loading.remove(); 
+			o.loading_stage = false; 
+			sound_btn_click();
+			track_pg('page02','進到小鎮畫面');
+		});
 	}
 	function creatjs_loading(){
 		var canvas, exportRoot;
@@ -104,151 +153,159 @@
 			createjs.Ticker.addEventListener("tick", StageListenter);
 		}
 	}
-	function creatjs_tip_box(){
-		images = images||{};
-		ss = ss||{};
-
-		var loader = new createjs.LoadQueue(false);
-		loader.addEventListener("fileload", handleFileLoad);
-		loader.addEventListener("complete", handleComplete);
-		loader.loadFile({src:"images/tip_box_ani_atlas_.json", type:"spritesheet", id:"tip_box_ani_atlas_"}, true);
-		loader.loadManifest(lib4.properties.manifest);
-		
-		function handleFileLoad(evt) {
-			if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
-		}
-
-		function handleComplete(evt) {
-			var queue = evt.target;
-			ss["tip_box_ani_atlas_"] = queue.getResult("tip_box_ani_atlas_");
-			o.tip_box_stage = new createjs.Stage(document.getElementById("tip_box"));
-			o.tip_box_stage.addChild(new lib4.tip_box_ani());
-			o.tip_box_stage.update();
-			createjs_event04();
-		}
+	function createjs_event_box_bg(){
+		var _canvas = document.getElementById("event_box_bg");
+		o.event_box_bg_stage = new createjs.Stage(_canvas);
+		o.event_box_bg_mc = o.event_box_bg_stage.addChild(new lib4.event_box());
+		o.event_box_bg_stage.update();
+		o.loading_num+=1;
+		check_loading();
 	}
-	function createjs_event04(){
-		var canvas, exportRoot;
-		canvas = document.getElementById("loading");
-		images = images||{};
-		ss = ss||{};
-
-		var loader = new createjs.LoadQueue(false);
-		loader.addEventListener("fileload", handleFileLoad);
-		loader.addEventListener("complete", handleComplete);
-		loader.loadFile({src:"images/event04_atlas_.json", type:"spritesheet", id:"event04_atlas_"}, true);
-		loader.loadManifest(lib3.properties.manifest);
-		
-		function handleFileLoad(evt) {
-			if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
-		}
-
-		function handleComplete(evt) {
-			var queue = evt.target;
-			ss["event04_atlas_"] = queue.getResult("event04_atlas_");
-
-			o.event_popup_4_stage = new createjs.Stage(document.getElementById("event_popup_4_ani"));
-			o.event_popup_4_ani = o.event_popup_4_stage.addChild(new lib3.event04_1());
-			o.event_popup_4_ani.setTransform(375,667).gotoAndStop(0);
-			o.event_popup_4_stage.update();
-
-			creatjs_start();
-		}
-	}
-	function creatjs_start(){
-		//createjs
-		o.event_box_bg = {
-			images: ["images/event_box_bg.png"],
-			frames: {width:750, height:260},
-			animations: {
-				stand:0,
-				show:{
-						frames: [0,8,1,9,2,10,3,11,4,12,5,13,6,14,7],
-						speed: 1
-				},
-				backshow:{
-						frames: [7,14,6,13,5,12,4,11,3,10,2,9,1,8,0],
-						speed: 1
-				}
-			}
-		};
-		o.event_box_bg_spriteSheet = new createjs.SpriteSheet(o.event_box_bg);
-		o.event_box_bg_canvas = document.getElementById("event_box_bg");
-		o.event_box_bg_stage = new createjs.Stage(o.event_box_bg_canvas);
-
-		images = images||{};
-		ss = ss||{};
-
-		var loader = new createjs.LoadQueue(false);
-		loader.addEventListener("fileload", handleFileLoad);
-		loader.addEventListener("complete", handleComplete);
-		loader.loadFile({src:"images/event_popup_atlas_.json", type:"spritesheet", id:"event_popup_atlas_"}, true);
-		loader.loadManifest(lib.properties.manifest);
-		
-		function handleFileLoad(evt) {
-			if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
-		}
-
-		function handleComplete(evt) {
-			var queue = evt.target;
-			ss["event_popup_atlas_"] = queue.getResult("event_popup_atlas_");
-
-			o.event_popup_2_stage = new createjs.Stage(document.getElementById("event_popup_2_ani"));
-			o.event_popup_2_ani = o.event_popup_2_stage.addChild(new lib.event02());
-			o.event_popup_2_ani.setTransform(375,667).gotoAndStop(0);
-			o.event_popup_2_stage.update();
-
-			o.event_popup_3_stage = new createjs.Stage(document.getElementById("event_popup_3_ani"));
-			o.event_popup_3_ani = o.event_popup_3_stage.addChild(new lib.event01());
-			o.event_popup_3_ani.setTransform(45,180).gotoAndStop(0);
-			o.event_popup_3_ani2 = o.event_popup_3_stage.addChild(new lib.talk_box01());
-			o.event_popup_3_ani2.setTransform(45,850).gotoAndStop(0);
-			o.event_popup_3_stage.update();
-
-			o.loading_num+=1;
-			check_loading();
-		}
-	}
+	
 
 	//Event
+	function check_org_street(){
+		// if($(window).width()>=1366) o.org_street = 110;
+	}
+	function event_line_icon_out(){
+		o.street_ctrl = true;
+	}
+	function event_point_over(){
+		o.street_ctrl = false;
+	}
+	function event_point_out(){
+		o.street_ctrl = true;
+	}
+	function coc_qrcode_over(){
+		if(!$(this).hasClass('on')) track_btn('COC_QR_CODE',1);
+		$(this).addClass('on');
+	}
+	function coc_qrcode_out(){
+		 $(this).removeClass('on');
+	}
+	function event_popup_4_ani_click(){
+
+		//tracker
+		track_btn('藥局popup_文字按鈕1',1);
+
+		clearTimeout(o.event_popup_4_stage_play_timeout);
+		play_popup_4();
+	}
+	function event_popup_3_ani_click(){
+
+		//tracker
+		var _index  = $(this).parent().index();
+		if(_index == 1) track_btn('咖啡館popup_文字按鈕_1',1);
+		else if(_index == 2) track_btn('咖啡館popup_文字按鈕_2',1);
+		else if(_index == 3) track_btn('咖啡館popup_文字按鈕_3',1);
+		
+		clearTimeout(o.event_popup_3_stage_play_timeout);
+		play_popup_3();
+		
+	}
+	function play_popup_2(){
+		o.event_popup_2_stage_play_num +=1;
+		if(o.event_popup_2_stage_play_num >= $('.event2_animate .word').length) return;
+		for(var i=0;i<$('.event2_animate .word').length;i++){
+			if(i>o.event_popup_2_stage_play_num) break;
+			$('.event2_animate .word').eq(i).addClass('on');
+		}
+		var _time = Math.random() * 2 * 1000 + 2000;
+		o.event_popup_2_stage_play_timeout = setTimeout(play_popup_2,_time);
+	}
+	function play_popup_3(){
+		o.event_popup_3_stage_play_num +=1;
+		if(o.event_popup_3_stage_play_num >= $('.event_popup_3_ani .cut').length) return;
+		$('.event_popup_3_ani .cut').removeClass('on').eq(o.event_popup_3_stage_play_num).addClass('on');
+		
+		o.event_popup_3_stage_play_timeout = setTimeout(play_popup_3,5000);
+	}
+	function play_popup_4(){
+		o.event_popup_4_stage_play_num +=1;
+		if(o.event_popup_4_stage_play_num >= 3) return;
+		$('.event4_animate').removeClass('cut1').removeClass('cut2').addClass('cut'+o.event_popup_4_stage_play_num);
+		o.event_popup_4_stage_play_timeout = setTimeout(play_popup_4,5000);
+	}
+	function event_line_icon_click(){
+		var _index = $(this).index();
+		if(_index == 0) o.org_street = 54;
+		else if(_index == 1) o.org_street = 110;
+		else if(_index == 2) o.org_street = 180;
+		else if(_index == 3) o.org_street = 210;
+		else if(_index == 4) o.org_street = 290;
+		street_move();
+		o.street_ctrl = false;
+
+		//tracker
+		if(_index == 0) track_btn('電影院_底部小花',1);
+		else if(_index == 1) track_btn('咖啡館_底部小花',1);
+		else if(_index == 2) track_btn('摩托車女神_底部小花',1);
+		else if(_index == 3) track_btn('藥局_底部小花',1);
+		else if(_index == 4) track_btn('奔走相告_底部小花',1);
+	}
 	function menu_link_click(){
 		var _index = $(this).index();
-		if(_index == 0) $('.menubtn').trigger('click');
+		$('.menuDom').removeClass('on');
+		$('.menu').addClass('off').removeClass('on');
+		o.menu_timeout = setTimeout(function() {
+			o.street_ctrl = true;
+			$('.menu').removeClass('off');
+		}, 1000);
+		if(_index == 0){
+			track_btn('返回小鎮',1);
+			track_pg('page02','進到小鎮畫面');
+			// $('.menubtn').trigger('click');
+		}
 		else if(_index == 1){
-			$('.menubtn').trigger('click');
+			track_btn('觀看影片',1);
+			// $('.menubtn').trigger('click');
 			o.now_event = 1;
 			show_pop(true);
 		}
-		// else if(_index == 2) {}
-	}
-	function StageListenter(){
-		if(o.event_box_bg_stage_play) o.event_box_bg_stage.update();
-		if(o.loading_stage) o.loading_stage.update();
-		if(o.tip_box_stage_play) o.tip_box_stage.update();
-
-		if(o.event_popup_2_stage_play) o.event_popup_2_stage.update();
-		if(o.event_popup_3_stage_play) o.event_popup_3_stage.update();
-		if(o.event_popup_4_stage_play){
-			o.event_popup_4_stage.update();
-			// console.log('o.event_popup_4_ani.currentFrame:'+o.event_popup_4_ani.currentFrame+"/"+'o.event_popup_4_ani.totalFrames:'+o.event_popup_4_ani.totalFrames);
-			if(o.event_popup_4_ani.currentFrame == o.event_popup_4_ani.totalFrames - 1) event_popup_4_ani_complete();
+		else if(_index == 2) {
+			track_btn('發現秘訣',1);
+			// $('.menubtn').trigger('click');
+			o.now_event = 4;
+			show_pop(true);
 		}
 	}
-	function event_popup_4_ani_complete(){
+	function StageListenter(){
 		
-		$('.event4 .btn_box').fadeIn();
+		if(o.event_box_bg_stage_play){
+			o.event_box_bg_stage.update();
+			if( o.event_box_bg_mc.currentFrame == 13) o.event_box_bg_stage_play=false;
+			else if( o.event_box_bg_mc.currentFrame == 27) o.event_box_bg_stage_play=false;
+		}
+		if(o.loading_stage) o.loading_stage.update();
+		// if(o.event_popup_2_stage_play) o.event_popup_2_stage.update();
+		// if(o.event_popup_3_stage_play) o.event_popup_3_stage.update();
+		// if(o.event_popup_4_stage_play){
+		// 	o.event_popup_4_stage.update();
+		// 	if(o.event_popup_4_ani.currentFrame == o.event_popup_4_ani.totalFrames - 1) event_popup_4_ani_complete();
+		// }
+		if(o.street_ctrl){
+			var _tmp = 2* (o.mouse_pageX - $(window).width()/2) / $(window).width() / 2;
+			o.org_street += _tmp;
+			if(o.org_street < 0 + o.set_orgpoint) o.org_street = o.org_street + 360;
+			else if(o.org_street > 360 + o.set_orgpoint) o.org_street = o.org_street -360;
+			street_move();
+		} 
 	}
+	
 	function sound_btn_click(){
 		if($('.sound_btn').hasClass('off')){
 			$('#bgm')[0].play();
 			$('.sound_btn').removeClass('off');
+			// track_btn('音樂播放',1);
 		}else{
 			$('#bgm')[0].pause();
 			$('.sound_btn').addClass('off');
+			// track_btn('音樂關閉',1);
 		}
 	}
 	function playvideo(_t){
 		if(_t){
+			track_btn('電影院popup_播放按鈕',1);
 			$('.event_popup_1_videobtn').fadeOut();
 			$('#event_popup_1_video')[0].play();
 			$('#bgm')[0].pause();
@@ -260,21 +317,44 @@
 	}
 	function show_pop(_t){
 		if(_t){
-			o.street_ctrl = false;
+			// o.street_ctrl = false;
 			o.has_auto_play_pop.push( o.now_event );
 			$('.event_popup .popup').eq(o.now_event - 1).show();
 			if(o.now_event == 5) $('.event_popup .closebtn').addClass('on');
+			else if(o.now_event == 2){
+				o.event_popup_3_stage_play_num = -1;
+				$('.event_popup .closebtn').addClass('on');
+				$('.event_popup_3_ani .cut').removeClass('on');
+			}else if(o.now_event == 3){
+				o.event_popup_2_stage_play_num = -1;
+				$('.event_popup .closebtn').removeClass('on');
+				$('.event2_animate .word').removeClass('on');
+			}else if(o.now_event == 4){
+				$('.event_popup .closebtn').removeClass('on');
+				o.event_popup_4_stage_play_num = 0;
+			}
 			else $('.event_popup .closebtn').removeClass('on');
+			popup_ani_play(true);
 			$('.event_popup').fadeIn(300,event_popup_start);
 			function event_popup_start(){ 
-				$('.event_popup .popup').eq(o.now_event - 1).addClass('on'); 
-				popup_ani_play(true);
+				$('.event_popup .popup').eq(o.now_event - 1).addClass('on');
+				o.street_ctrl = false;
 			}
 		}else{
+			//tracker
+			if(o.now_event == 1) track_btn('電影院popup_關閉按鈕',1);
+			else if(o.now_event == 2) track_btn('咖啡館popup_關閉按鈕',1);
+			else if(o.now_event == 3) track_btn('摩托車女神popup_關閉按鈕',1);
+			else if(o.now_event == 4) track_btn('藥局popup_關閉按鈕',1);
+			else if(o.now_event == 5) track_btn('奔走相告popup_關閉按鈕',1);
+
+			track_pg('page02','進到小鎮畫面');
+
 			popup_ani_play(false);
+			o.street_ctrl = true;
 			$('.event_popup').fadeOut(300,event_popup_end);
 			function event_popup_end(){
-				$('.event_popup .popup').hide();
+				$('.event_popup .popup').removeClass('on').hide();
 				o.street_ctrl = true; 
 			}
 		}
@@ -282,56 +362,66 @@
 	function popup_ani_play(_t){
 		if(_t){
 			if(o.now_event == 3){
-				o.event_popup_2_stage_play = true;
-				o.event_popup_2_ani.gotoAndPlay(1);
+				play_popup_2();
+				// o.event_popup_2_ani.gotoAndPlay(1);
+				// o.event_popup_2_stage_play = true;
 			}
 			else if(o.now_event == 2){
-				o.event_popup_3_stage_play = true;
-				o.event_popup_3_ani.gotoAndPlay(1);
-				o.event_popup_3_ani2.gotoAndPlay(1);
+				play_popup_3();
+				// o.event_popup_2_stage_play = false;
 			}
 			else if(o.now_event == 4){
-				o.event_popup_4_stage_play = true;
-				o.event_popup_4_ani.gotoAndPlay(1);
+				$('.event_popup .closebtn').removeClass('on');
+				play_popup_4();
+				// o.event_popup_2_stage_play = false;
 			}
+
+			//tracker
+			if(o.now_event==1) track_pg('page06','電影院popup');
+			else if(o.now_event==2) track_pg('page04','咖啡館popup');
+			else if(o.now_event==3) track_pg('page05','摩托車女神popup');
+			else if(o.now_event==4) track_pg('page07','藥局popup');
+			else if(o.now_event==5) track_pg('page08','奔走相告popup');
 			
 		}else{
+			o.event_popup_2_stage_play = false;
 			if(o.now_event == 2){
-				o.event_popup_2_ani.stop();
-				o.event_popup_2_stage_play = false;
+				clearTimeout(o.event_popup_3_stage_play_timeout); 
 			}
 			else if(o.now_event == 1){
 				playvideo(false);
 			}
 			else if(o.now_event == 3){
-				o.event_popup_3_ani.stop();
-				o.event_popup_3_ani2.stop();
-				o.event_popup_3_stage_play = false;
+				// o.event_popup_2_ani.gotoAndStop(1);
+				clearTimeout(o.event_popup_2_stage_play_timeout); 
 			}
 			else if(o.now_event == 4){
-				o.event_popup_4_ani.stop();
-				$('.event4 .btn_box').hide();
-				o.event_popup_4_stage_play = false;
+				clearTimeout(o.event_popup_4_stage_play_timeout); 
 			}
 		}
 	}
+	
 	function event_point_click(){
 		clearTimeout(o.event_box_timeout);
 		o.now_event = $(this).index() + 1;
+		//tracker
+		if(o.now_event == 1) track_btn('電影院_街景小花',1);
+		else if(o.now_event == 2) track_btn('咖啡館_街景小花',1);
+		else if(o.now_event == 3) track_btn('摩托車女神_街景小花',1);
+		else if(o.now_event == 4) track_btn('藥局_街景小花',1);
+		else if(o.now_event == 5) track_btn('奔走相告_街景小花',1);
 		show_pop(true);
 	}
 	function play_event_box(_t,_n){
-		if(!o.iknow_click) return;
+		// if(!o.iknow_click) return;
 		if(_t){
 			if(o.now_event == _n) return;
 			else o.now_event = _n;
 			if(!o.event_box_bg_stage) return;
-			o.event_box_bg_stage.removeAllChildren();
 			o.event_box_bg_stage_play = true;
-			o.event_box_bg_mc = o.event_box_bg_stage.addChild(new createjs.Sprite(o.event_box_bg_spriteSheet, "show"));
-			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
+			o.event_box_bg_mc.gotoAndPlay(0);
 			$('.event_box').addClass('on');
-			$('.event_box').find('span').removeClass('on').eq(_n).addClass('on');
+			$('.event_box').find('span').removeClass('on').eq(_n - 1).addClass('on');
 			$('.event_line').find('.icon').removeClass('on').eq( _n - 1).addClass('on');
 			o.event_box_timeout = setTimeout(function(){ 
 				var _has = false;
@@ -346,35 +436,27 @@
 			if(o.now_event == 0) return;
 			else o.now_event = 0;
 			clearTimeout(o.event_box_timeout);
-			o.event_box_bg_stage.removeAllChildren();
 			o.event_box_bg_stage_play = true;
-			o.event_box_bg_mc = o.event_box_bg_stage.addChild(new createjs.Sprite(o.event_box_bg_spriteSheet, "backshow"));
-			o.event_box_bg_mc.addEventListener("animationend", event_box_bg_complete);
+			o.event_box_bg_mc.gotoAndPlay(14);
 			$('.event_box').removeClass('on');
 			$('.event_box').find('span').removeClass('on');
-			$('.event_line').find('.icon').removeClass('on')
+			$('.event_line').find('.icon').removeClass('on');
 		}
 	}
-	function event_box_bg_complete(){
-		o.event_box_bg_mc.stop();
-		o.event_box_bg_stage_play = false;
-	}
+	// function event_box_bg_complete(){
+	// 	o.event_box_bg_mc.stop();
+	// 	o.event_box_bg_stage_play = false;
+	// }
 	function street_all(){
-		var _this = $(this),
-			og_left = 0,
-			drag_left = 0,
-			tmp_org_street;
-
+		var _this = $(this);
+		_this.bind('mousemover', function(){
+			o.street_ctrl = true;
+		});
 		_this.bind('mousemove', _touchmove);
 
 		function _touchmove(e){
-            // o.street_alpha
-			// _this.addClass('move');
-            drag_left = e.pageX - og_left;
-			o.org_street = tmp_org_street - drag_left / $(window).width() * 60;
-			if(o.org_street < 0) o.org_street = o.org_street + 360;
-			else if(o.org_street > 360) o.org_street = o.org_street -360;
-			street_move();
+			o.mouse_pageX = e.pageX;
+			// o.street_ctrl = true;
 		}
 	}
 	function iknow_click(_t){
@@ -386,6 +468,8 @@
 	}
 	function menubtn_click(){
 		if($(this).hasClass('on')){
+			track_btn('主選單_關閉',1);
+			track_pg('page02','進到小鎮畫面');
 			$('.menuDom').removeClass('on');
 			$('.menu').addClass('off').removeClass('on');
 			o.menu_timeout = setTimeout(function() {
@@ -394,6 +478,8 @@
 			}, 1000);
 		}
 		else{
+			track_btn('主選單_打開',1);
+			track_pg('page03','主選單畫面');
 			o.street_ctrl = false;
 			$('.menuDom').addClass('on');
 			clearTimeout(o.menu_timeout);
@@ -401,32 +487,48 @@
 			$('.menu').removeClass('off').addClass('on');
 		}
 	}
-	// function window_deviceorientation(e) {
-	// 	// o.street_alpha = Math.round(e.alpha / 10) *10;
-	// 	o.street_alpha = e.alpha;
-	// 	if(o.street_ctrl) street_move();
-	// }
+	
 	function street_move(){
-		o.street_width = $('.street').eq(0).width();
-		$('.street').eq(1).css('left',o.street_width);
-		$('.street_all').css('margin-left',o.street_width*-1);
-		// o.street_deg = Math.floor( o.street_alpha - o.org_street);
 		o.street_deg = o.street_alpha - o.org_street;
-
-		// if( o.street_ctrl ){
-			if(o.street_deg >= -62 && o.street_deg <= -42) play_event_box(true,1);
-			else if(o.street_deg >= -120 && o.street_deg <= -100) play_event_box(true,2);
-			else if(o.street_deg >= -180 && o.street_deg <= -170) play_event_box(true,3);
-			else if(o.street_deg >= 170 && o.street_deg <= 180) play_event_box(true,3);
-			else if(o.street_deg >= -218 && o.street_deg <= -198) play_event_box(true,4);
-			else if(o.street_deg >= 140 && o.street_deg <= 160) play_event_box(true,4);
-			else if(o.street_deg >= -297 && o.street_deg <= -277) play_event_box(true,5);
-			else if(o.street_deg >= 60 && o.street_deg <= 80) play_event_box(true,5);
-			else play_event_box(false);
-		// }
-		// $('.pop').html(o.street_deg);
+		if(o.street_deg >= -66 - 30 && o.street_deg <= -46 -30 ) play_event_box(true,1);
+		else if(o.street_deg >= -120 - 30 && o.street_deg <= -100 -30 ) play_event_box(true,2);
+		else if(o.street_deg >= -190 - 30 && o.street_deg <= -170 -30 ) play_event_box(true,3);
+		else if(o.street_deg >= 170 - 30 && o.street_deg <= 190 -30 ) play_event_box(true,3);
+		else if(o.street_deg >= -220 - 30 && o.street_deg <= -200 -30 ) play_event_box(true,4);
+		else if(o.street_deg >= 140 - 30 && o.street_deg <= 160 -30 ) play_event_box(true,4);
+		else if(o.street_deg >= -300 - 30 && o.street_deg <= -280 -30 ) play_event_box(true,5);
+		else if(o.street_deg >= 60 - 30 && o.street_deg <= 80 -30 ) play_event_box(true,5);
+		else play_event_box(false);
 		o.dis = Math.floor(o.street_width / 360 * o.street_deg + $(window).width());
 		$('.street_all').css('left',o.dis);
 	}
-	
+
+	function track_btn(btnName,value){
+		window._CiQ11708 = window._CiQ11708 || [];
+		window._CiQ11708.push(['_trackEvent', {
+		type: 1,
+		labels:[
+		{'按钮名称':btnName}
+		],
+		values: [
+		{'数量':value}
+		]
+		}]);
+		window.CClickiV3 && window.CClickiV3[11708] && window.CClickiV3[11708]._flushObserver(function(){});
+	}
+	function track_pg(page,pgTitle){
+		window._CiQ11708 = window._CiQ11708 || [];
+		window._CiQ11708.push(['_trackPageView', {
+		'urlPath': page,
+		'pageTitle': pgTitle
+		}]);
+		window.CClickiV3 && window.CClickiV3[11708] && window.CClickiV3[11708]._flushObserver(function(){});
+	}
+
+	$(window).resize(webResize);
+	function webResize(){
+		for(var i=0; i<$('.street').length;i++) $('.street').eq(i).css('width',$('.street').eq(i).find('img').width());
+		o.street_width = $('.street').eq(0).width();
+		street_move();
+	}
 })//ready end  

@@ -1,7 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-<title>靠「吃」就能当女神？</title>
+<title>优思明小镇</title>
 <meta charset="UTF-8">
 <meta lang="tw">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -24,11 +24,14 @@
 <link rel="stylesheet" href="css/common.css"/>
 <!--js-->
 <script src="js/device.min.js"></script>
+<script src="js/device_url.js"></script>
 <script src="js/loading_ani.js"></script>
 <script src="js/tip_box_ani.js"></script>
 <script src="js/event04.js"></script>
 <script src="js/event_popup.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="js/common.js"></script>
+
 
 <script type="text/javascript">
 (function() {
@@ -49,8 +52,20 @@
 
 </head>
 <body>
-	<div class="share_img" style="display:none;"><img src="images/fbsc.jpg"></div>
+	<!-- Google Tag Manager -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-56MDX8"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-56MDX8');</script>
+	<!-- End Google Tag Manager -->
+
+    <div class="share_img" style="display:none;"><img src="images/fbsc.jpg"></div>
+	<div class="loading_flower"></div>
 	<div class="loading">
+		<span class="txt">loading</span>
 		<canvas id="loading" width="750" height="1334"></canvas>
 	</div>
 	<div class="menubtn menuDom">
@@ -60,7 +75,7 @@
 	</div>
 	<div class="sound_btn off">
 		<span></span>
-		<audio id="bgm" preload="auto" loop="loop" controls="controls">
+		<audio id="bgm" loop="loop" controls="controls">
         	<source src="images/bgm.mp3">
     	</audio>
 	</div>
@@ -71,9 +86,9 @@
 		<div class="menu_in">
 			<div class="title"></div>
 			<div class="link">
-				<div class="menu_link m1"></div>
-				<div class="menu_link m2"></div>
-				<div class="menu_link m3"></div>
+				<div class="menu_link m1" onclick="dataLayer.push({'event': 'Mob-FanHui'});"></div>
+				<div class="menu_link m2" onclick="dataLayer.push({'event': 'Mob-GuanKanYingPian'});"></div>
+				<div class="menu_link m3" onclick="dataLayer.push({'event': 'Mob-FaXianNvShenMiJue'});"></div>
 			</div>
 			<div class="menu_logo"></div>
 		</div>
@@ -84,36 +99,36 @@
 			<div class="popup event1">
 				<div class="title"></div>
 				<div class="video">
-					<div class="event_popup_1_videobtn"></div>
+					<div class="event_popup_1_videobtn" onclick="dataLayer.push({'event': 'Mob-Play'});"></div>
 					<video width="601" height="338" id="event_popup_1_video" controls>
 						<source src="images/video.mp4" type="video/mp4">
 						Your browser does not support HTML5 video.
 					</video>
 				</div>
 				<div class="btn_box">
-					<div class="btn gotobuy_btn"></div>
-					<div class="btn getsecret_btn"></div>
-					<div class="btn share_btn"></div>
+					<div class="btn gotobuy_btn" onclick="dataLayer.push({'event': 'Mob-LiKeRuShou'});"></div>
+					<div class="btn getsecret_btn" onclick="dataLayer.push({'event': 'Mob-MaShangGetNvShengMiMi'});"></div>
+					<div class="btn share_btn" onclick="dataLayer.push({'event': 'Mob-BenZouXiangGao'});"></div>
 				</div>
 			</div>
 			<div class="popup event3">
 				<div class="btn_box">
-					<div class="btn getsecret_btn"></div>
-					<div class="btn share_btn"></div>
+					<div class="btn getsecret_btn" onclick="dataLayer.push({'event': 'Mob-MaShangGetNvShengMiMi'});"></div>
+					<div class="btn share_btn" onclick="dataLayer.push({'event': 'Mob-BenZouXiangGao'});"></div>
 				</div>
 				<canvas id="event_popup_3_ani" width="750" height="1334"></canvas>
 			</div>
 			<div class="popup event2">
 				<div class="btn_box">
-					<div class="btn unlock_btn"></div>
-					<div class="btn share_btn"></div>
+					<div class="btn unlock_btn" onclick="dataLayer.push({'event': 'Mob-MaShangLiaoJie'});"></div>
+					<div class="btn share_btn" onclick="dataLayer.push({'event': 'Mob-BenZouXiangGao'});"></div>
 				</div>
 				<canvas id="event_popup_2_ani" width="750" height="1334"></canvas>
 			</div>
 			<div class="popup event4">
 				<div class="btn_box">
-					<div class="btn gotobuy_btn"></div>
-					<div class="btn more_msg_btn"></div>
+					<div class="btn gotobuy_btn" onclick="dataLayer.push({'event': 'Mob-LiKeRuShou'});"></div>
+					<div class="btn more_msg_btn" onclick="dataLayer.push({'event': 'Mob-More'});"></div>
 				</div>
 				<canvas id="event_popup_4_ani" width="750" height="1334"></canvas>
 			</div>
@@ -153,18 +168,18 @@
 			<div class="street_all_in">
 				<div class="street">
 					<div class="event_point_box">
-						<div class="event_point cinema"></div>
-						<div class="event_point cafe_girl"></div>
-						<div class="event_point photographers"></div>
-						<div class="event_point medical"></div>
-						<div class="event_point play_phone"></div>
+						<div class="event_point cinema" onclick="dataLayer.push({'event': 'Mob-Flower'});"></div>
+						<div class="event_point cafe_girl" onclick="dataLayer.push({'event': 'Mob-Flower'});"></div>
+						<div class="event_point photographers" onclick="dataLayer.push({'event': 'Mob-Flower'});"></div>
+						<div class="event_point medical" onclick="dataLayer.push({'event': 'Mob-Flower'});"></div>
+						<div class="event_point play_phone" onclick="dataLayer.push({'event': 'Mob-Flower'});"></div>
 					</div>
 					<div class="guy">
 						<div class="cafe_girl"></div>
 						<div class="photographers"></div>
 						<div class="play_phone"></div>
 					</div>
-					<img src="images/all_street.jpg">
+					<img src="images/all_street_s.jpg">
 				</div>
 			</div>
 		</div>

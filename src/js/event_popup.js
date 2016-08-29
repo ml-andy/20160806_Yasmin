@@ -1078,7 +1078,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 	this.instance.alpha = 0;
 	this.instance._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(12).to({_off:false},0).wait(1).to({x:610.3,alpha:0.29},0).wait(1).to({x:614.1,alpha:0.537},0).wait(1).to({x:616.7,alpha:0.716},0).wait(1).to({x:618.6,alpha:0.839},0).wait(1).to({x:619.8,alpha:0.918},0).wait(1).to({x:620.5,alpha:0.967},0).wait(1).to({x:620.9,alpha:0.992},0).wait(1).to({x:621,alpha:1},0).wait(99).to({y:209.9},4).wait(146).to({y:160.9},4).wait(232));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(12).to({_off:false},0).wait(1).to({x:610.3,alpha:0.29},0).wait(1).to({x:614.1,alpha:0.537},0).wait(1).to({x:616.7,alpha:0.716},0).wait(1).to({x:618.6,alpha:0.839},0).wait(1).to({x:619.8,alpha:0.918},0).wait(1).to({x:620.5,alpha:0.967},0).wait(1).to({x:620.9,alpha:0.992},0).wait(1).to({x:621,alpha:1},0).wait(99).to({y:209.9},4).wait(146).to({y:160.9},4).to({_off:true},112).wait(120));
 
 	// txt
 	this.instance_1 = new lib.event01_txt04();

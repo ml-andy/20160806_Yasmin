@@ -1,0 +1,1 @@
+﻿if(!device.mobile()) window.location.replace("pc.html" + window.location.search + window.location.hash);

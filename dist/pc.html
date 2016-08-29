@@ -24,31 +24,41 @@
 <link rel="stylesheet" href="css/pc.css"/>
 <!--js-->
 <script src="js/device.min.js"></script>
+<script src="js/device_url_pc.js"></script>
 <script src="js/loading_pc.js"></script>
-<script src="js/tip_box_ani.js"></script>
-<script src="js/event04.js"></script>
-<script src="js/event_popup.js"></script>
+<script src="js/event_box.js"></script>
 <script src="js/common_pc.js"></script>
-
 <script type="text/javascript">
 (function() {
-    window._CiQ11709 = window._CiQ11709 || [];
-    window._CiQ11709.push(['_cookieUseRootDomain', true]);
+    window._CiQ11708 = window._CiQ11708 || [];
+    window._CiQ11708.push(['_cookieUseRootDomain', true]);
     var c = document.createElement('script');
     c.type = 'text/javascript';
     c.async = true;
     c.charset = 'utf-8';
-    c.src = '//collect.cn.miaozhen.com/ca/11709';
+    c.src = '//collect.cn.miaozhen.com/ca/11708';
     var h = document.getElementsByTagName('script')[0];
     h.parentNode.insertBefore(c, h);
 })();
 </script>
 <noscript>
-<link href="//collect.cn.miaozhen.com/refer/collect?i=11709&v=13922245942&pu=http%3A//%28NoScriptPageviews%29&pt=NoScriptPageviews&ru=http%3A//%28NoScriptClients%29&csh=1000&csw=1000&css=10" rel="stylesheet" type="text/css" />
+<link href="//collect.cn.miaozhen.com/refer/collect?i=11708&v=13922245942&pu=http%3A//%28NoScriptPageviews%29&pt=NoScriptPageviews&ru=http%3A//%28NoScriptClients%29&csh=1000&csw=1000&css=10" rel="stylesheet" type="text/css" />
 </noscript>
 </head>
 <body>
+	<!-- Google Tag Manager -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-56MDX8"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-56MDX8');</script>
+	<!-- End Google Tag Manager -->
+	
+	<div class="share_img" style="display:none;"><img src="images/fbsc.jpg"></div>
 	<div class="loading">
+		<span class="txt">loading</span>
 		<canvas id="loading" width="1920" height="1080"></canvas>
 	</div>
 	<div class="menubtn menuDom">
@@ -59,63 +69,111 @@
 	</div>
 	<div class="sound_btn off">
 		<span></span>
-		<audio id="bgm" preload="auto" loop="loop" controls="controls">
-        	<source src="images/bgm.mp3">
-    	</audio>
+		<div class="audio_div">
+			<audio id="bgm" preload="auto" loop="loop" controls="controls">
+				<source src="images/bgm.mp3">
+			</audio>
+		</div>
 	</div>
+	<div class="coc_qrcode"></div>
 	<div class="menu">
 		<div class="menu_in">
 			<div class="title"></div>
 			<div class="link">
-				<div class="menu_link m1"></div>
-				<div class="menu_link m2"></div>
-				<div class="menu_link m3"></div>
+				<div class="menu_link m1" onclick="dataLayer.push({'event': 'PC-FanHui'});"></div>
+				<div class="menu_link m2" onclick="dataLayer.push({'event': 'PC-GuanKanYingPian'});"></div>
+				<div class="menu_link m3" onclick="dataLayer.push({'event': 'PC-FaXianNvShenMiJue'});"></div>
 			</div>
 		</div>
 	</div>
     <div class="footer">
         <div class="footer_logo"></div>
-        <div class="footer_link">
+		<div class="footer_logo2"></div>
+        <!--<div class="footer_link">
             <a href="#" target="blank">关于我们</a> | <a href="#" target="blank">使用条款</a> | <a href="#" target="blank">隐私保护声明</a> | <a href="#" target="blank">联系我们</a>
-        </div>
+        </div>-->
     </div>
 	<div class="event_popup">
+		<div class="closebtn"></div>
 		<div class="event_popup_in">
 			<div class="popup event1">
-				<div class="title"></div>
 				<div class="video">
-					<div class="event_popup_1_videobtn"></div>
+					<div class="event_popup_1_videobtn" onclick="dataLayer.push({'event': 'PC-Play'});"></div>
 					<video width="601" height="338" id="event_popup_1_video" controls>
-						<source src="http://bayertest.oss-cn-hangzhou.aliyuncs.com/0810YASMIN%20A%20Copy.mp4" type="video/mp4">
+						<source src="images/video.mp4" type="video/mp4">
 						Your browser does not support HTML5 video.
 					</video>
 				</div>
 				<div class="btn_box">
-					<div class="btn gotobuy_btn"></div>
-					<div class="btn getsecret_btn"></div>
-					<div class="btn share_btn"></div>
+					<div class="btn gotobuy_btn" onclick="dataLayer.push({'event': 'PC-LiKeRuShou'});"></div>
+					<div class="btn getsecret_btn" onclick="dataLayer.push({'event': 'PC-MaShangGetNvShengMiMi'});"></div>
+					<div class="btn share_btn" onclick="dataLayer.push({'event': 'PC-BenZouXiangGao'});"></div>
 				</div>
 			</div>
 			<div class="popup event3">
 				<div class="btn_box">
-					<div class="btn getsecret_btn"></div>
-					<div class="btn share_btn"></div>
+					<div class="btn getsecret_btn" onclick="dataLayer.push({'event': 'PC-MaShangGetNvShengMiMi'});"></div>
+					<div class="btn share_btn" onclick="dataLayer.push({'event': 'PC-BenZouXiangGao'});"></div>
 				</div>
-				<canvas id="event_popup_3_ani" width="750" height="1334"></canvas>
+				<!--<canvas id="event_popup_3_ani" width="750" height="1334"></canvas>-->
+				<div class="event_popup_3_ani">
+					<div class="closebtn"></div>
+					<div class="cut_1 cut">
+						<div class="pic"><img src="images/pc_event_popup_2_cut1_pic.jpg"></div>
+						<div class="word"><img src="images/pc_event_popup_2_cut1_word.png"></div>
+					</div>
+					<div class="cut_2 cut">
+						<div class="pic"><img src="images/pc_event_popup_2_cut2_pic.jpg"></div>
+						<div class="word"><img src="images/pc_event_popup_2_cut2_word.png"></div>
+					</div>
+					<div class="cut_3 cut">
+						<div class="pic"><img src="images/pc_event_popup_2_cut3_pic.jpg"></div>
+						<div class="word"><img src="images/pc_event_popup_2_cut3_word.png"></div>
+					</div>
+					<div class="cut_4 cut">
+						<div class="pic"><img src="images/pc_event_popup_2_cut4_pic.jpg"></div>
+						<div class="word"><img src="images/pc_event_popup_2_cut4_word.png"></div>
+					</div>
+				</div>
 			</div>
 			<div class="popup event2">
 				<div class="btn_box">
 					<div class="btn unlock_btn"></div>
-					<div class="btn share_btn"></div>
+					<div class="btn share_btn" onclick="dataLayer.push({'event': 'PC-BenZouXiangGao'});"></div>
 				</div>
-				<canvas id="event_popup_2_ani" width="750" height="1334"></canvas>
+				<div class="event2_animate">
+					<!--<div class="closebtn"></div>-->
+					<div class="word_out">
+						<div class="word_in">
+							<div class="word word1"></div>
+							<div class="word word2"></div>
+							<div class="word word3"></div>
+							<div class="word word4"></div>
+							<div class="word word5"></div>
+							<div class="word word6"></div>
+							<div class="word word7"></div>
+							<div class="word word8"></div>
+							<div class="word word9"></div>
+							<div class="word word10"></div>
+							<div class="word word11"></div>
+						</div>
+					</div>
+				</div>
+				<!--<canvas id="event_popup_2_ani" width="750" height="1334"></canvas>-->
 			</div>
 			<div class="popup event4">
 				<div class="btn_box">
-					<div class="btn gotobuy_btn"></div>
-					<div class="btn more_msg_btn"></div>
+					<div class="btn gotobuy_btn" onclick="dataLayer.push({'event': 'PC-MaShangRuShou'});"></div>
+					<div class="btn more_msg_btn" onclick="dataLayer.push({'event': 'PC-More'});"></div>
 				</div>
-				<canvas id="event_popup_4_ani" width="750" height="1334"></canvas>
+				<div class="event4_animate">
+					<div class="word1"></div>
+					<div class="word2"></div>
+					<div class="word3"></div>
+					<div class="pd"></div>
+					<div class="person"></div>
+				</div>
+				<!--<canvas id="event_popup_4_ani" width="750" height="1334"></canvas>-->
 			</div>
 			<div class="popup event5">
 				<div class="pic">
@@ -126,15 +184,8 @@
 		</div>
 	</div>
 	<div class="stage menuDom">
-		<div class="tip_box">
-			<div class="iknow_btn"></div>
-			<canvas id="tip_box" width="750" height="1334"></canvas>
-		</div>
 		<div class="event_box">
 			<div class="box">
-				<div class="icon">
-					<span></span>
-				</div>
 				<div class="box_word">
 					<span class="w1"></span>
 					<span class="w2"></span>
@@ -142,7 +193,7 @@
 					<span class="w4"></span>
 					<span class="w5"></span>
 				</div>
-				<canvas id="event_box_bg" width="750" height="260"></canvas>
+				<canvas id="event_box_bg" width="390" height="280"></canvas>
 			</div>
 			<div class="event_line">
 				<div class="icon"></div>
@@ -156,18 +207,18 @@
 			<div class="street_all_in">
 				<div class="street">
 					<div class="event_point_box">
-						<div class="event_point cinema"></div>
-						<div class="event_point cafe_girl"></div>
-						<div class="event_point photographers"></div>
-						<div class="event_point medical"></div>
-						<div class="event_point play_phone"></div>
+						<div class="event_point cinema" onclick="dataLayer.push({'event': 'PC-Flower'});"></div>
+						<div class="event_point cafe_girl" onclick="dataLayer.push({'event': 'PC-Flower'});"></div>
+						<div class="event_point photographers" onclick="dataLayer.push({'event': 'PC-Flower'});"></div>
+						<div class="event_point medical" onclick="dataLayer.push({'event': 'PC-Flower'});"></div>
+						<div class="event_point play_phone" onclick="dataLayer.push({'event': 'PC-Flower'});"></div>
 					</div>
 					<div class="guy">
 						<div class="cafe_girl"></div>
 						<div class="photographers"></div>
 						<div class="play_phone"></div>
 					</div>
-					<img src="images/all_street.jpg">
+					<img src="images/all_street_s.jpg">
 				</div>
 			</div>
 		</div>

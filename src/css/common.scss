@@ -2,6 +2,27 @@
 
 $vpw:0;
 @media screen and (max-width: 750px) {
+	.loading_flower{
+		@include flt;
+		z-index: 99998;
+		background-color: rgba(255,255,255,0.85);
+		display: none;
+		&.on{
+			&:before{
+				@include animation(loading_flower_ani 1s 0s infinite linear);
+			}
+		}
+		&:before{
+			content:"";
+			@include altvw(91,91,0,0,-45,-45);
+			left: 50%;
+			top: 50%;
+			background-image: url(../images/event_icon3.png);
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+	}
 	.loading{
 		@include flt;
 		z-index: 99999;
@@ -11,6 +32,14 @@ $vpw:0;
 		background-repeat: no-repeat;
 		background-size: getVW(279) getVW(131);
 		background-position: center center;
+		.txt{
+			@include altvw(220,28,0,837,-110);
+			left: 50%;
+			@include fontvw(28,28,#464646,'normal','Arial');
+			letter-spacing: getVW(16);
+			text-align: center;
+			z-index: 9;
+		}
 		canvas{
 			@include amvw(750,1334);
 			z-index: 0;
@@ -21,11 +50,11 @@ $vpw:0;
 		@include fltvw(750,92);
 		z-index: 9;
 		.logo{
-			@include altvw(314,92);
-			background-image: url(../images/menu_logo.png);
+			@include altvw(325,76);
+			background-image: url(../images/menu_logo_high.png);
 			background-repeat: no-repeat;
-			background-size: getVW(273) getVW(35);
-			background-position: center center;
+			background-size: getVW(325) getVW(76);
+			background-position: left top;
 			cursor: pointer;
 		}
 	}
@@ -40,6 +69,7 @@ $vpw:0;
 		span{
 			@include altvw(53,7,29);
 			background-color: #ff7800;
+			border: getVW(2) solid #fff;
 			transition: 0.3s;
 			&.top{ top: getVW(27); }
 			&.middle{ top: getVW(42); }
@@ -52,7 +82,7 @@ $vpw:0;
 		}
 	}
 	.sound_btn{
-		@include artvw(60,60,29,92);
+		@include artvw(60,60,25,110);
 		overflow: hidden;
 		span{
 			@include alt;
@@ -199,7 +229,7 @@ $vpw:0;
 			}
 		}
 		.menu_logo{
-			@include albvw(298,40,0,222,0);
+			@include albvw(298,40,0,70,0);
 			left: 50%;
 			opacity: 0;
 			background-image: url(../images/menu_logo.png);
@@ -208,8 +238,7 @@ $vpw:0;
 			background-position: center center;
 			&:before{
 				content:"";
-				@include altvw(101,101,0,62,-50);
-				left: 50%;
+				@include altvw(295,202,0,-240);
 				background-image: url(../images/Beijing_logo01.png);
 				background-size: contain;
 				background-repeat: no-repeat;
@@ -367,7 +396,7 @@ $vpw:0;
 			&.event4{
 				background-color: #fff;
 				.btn_box{
-					@include albvw(437,272,0,0,-218);
+					@include albvw(437,200,0,0,-218);
 					left: 50%;
 					display: none;
 					z-index: 2;
@@ -384,6 +413,7 @@ $vpw:0;
 						&:nth-child(2){
 							top: getVW(97);
 							background-image: url(../images/event_popup_4_btn2.png);
+							display: none;
 						}
 					}
 				}
@@ -418,7 +448,7 @@ $vpw:0;
 			z-index: 3;
 			background-color: rgba(0,0,0,0.7);
 			.iknow_btn{
-				@include albvw(342,77,0,110,-171);
+				@include albvw(410,92,0,107,-205);
 				background-image: url(../images/iknow_btn.png);
 				background-repeat: no-repeat;
 				background-size: contain;
@@ -456,9 +486,10 @@ $vpw:0;
 					background-repeat: no-repeat;
 					background-size: contain;
 					background-position: center center;
-					z-index: 1;
+					z-index: 3;
 					transition:0.3s;
 					opacity: 0;
+					cursor: pointer;
 					span{
 						@include alt;
 						background-image: url(../images/event_icon3.png);
@@ -496,7 +527,7 @@ $vpw:0;
 				@include alt;
 				background-image: url(../images/event_icon2.png);
 				background-repeat: no-repeat;
-				background-size: getVW(368) getVW(5);
+				background-size: getVW(523) getVW(5);
 				background-position: getVW(99) getVW(53);
 				z-index: 1;
 				.icon{
@@ -542,30 +573,32 @@ $vpw:0;
 			}
 			.street_all_in{
 				@include alt(auto);
-				width: getVH(20880);
-				height: getVH(2088);
+				width: getVH(20800);
+				height: getVH(2080);
 				top: auto;
 				bottom: -20vh;
 				transition: 0.3s;
 				transition-timing-function: ease-out;
+				background-image: url(../images/all_street_s_bg.jpg);
+				background-repeat: repeat-x;
+				background-size: auto 100%;
+				background-position: center center;
 			}
 			.street{
 				@include alt(auto);
 				z-index: 0;
 				&:nth-child(2){
-					left: getVH(10440);
+					left: getVH(10400);
 				}
 				.event_point_box{
 					@include alt;
 					z-index: 2;
 					pointer-events: none;
 					.event_point{
-						@include alt(1.245%,0);
-						height: count_point_t(131);
-						background-image: url(../images/event_icon4.png);
-						background-repeat: no-repeat;
-						background-size: contain;
-						background-position: center center;
+						@include alt(2%,0);
+						height: count_point_t(180);
+						margin-left: -0.35%;
+						margin-top: -0.3%;
 						z-index: 1;
 						cursor: pointer;
 						pointer-events: auto;
@@ -596,9 +629,18 @@ $vpw:0;
 							background-repeat: no-repeat;
 							background-size: contain;
 							background-position: center center;
-							@include animation(event_box_icon 1s 0s infinite linear);
+							@include animation(event_box_icon_two 1.5s 0s infinite linear);
 						}
-						
+						&:after{
+							content:"";
+							@include alt;
+							background-image: url(../images/event_icon4.png);
+							background-repeat: no-repeat;
+							background-size: contain;
+							background-position: center center;
+							@include animation(event_box_icon 1.5s 0s infinite linear);
+							z-index: 2;
+						}
 					}
 				}
 				.guy{
@@ -648,8 +690,35 @@ $vpw:0;
 		}
 	}
 	@include keyframes(event_box_icon) {
-		0% {opacity: .3;}
-		50% {opacity: 1;}
-		100% {opacity: .3;}
+		0% {opacity: 1;}
+		30% {opacity: .3;}
+		60% {opacity: 1;}
+		100% {opacity: 1;}
+	}
+	@include keyframes(event_box_icon_two) {
+		0% {
+			@include transform(scale(0.5));
+			opacity: .3;
+		}
+		30% {
+			@include transform(scale(1));
+			opacity: 1;
+		}
+		60% {
+			@include transform(scale(0.5));
+			opacity: .3;
+		}
+		100% {
+			@include transform(scale(0.5));
+			opacity: .3;
+		}
+	}
+	@include keyframes(loading_flower_ani) {
+		0% {
+			@include transform(rotateZ(0));
+		}
+		100% {
+			@include transform(rotateZ(360deg));
+		}
 	}
 }
