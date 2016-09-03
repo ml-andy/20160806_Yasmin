@@ -21,14 +21,16 @@
 <script src="js/movieclip-0.8.1.min.js"></script>
 <script src="js/preloadjs-0.6.1.min.js"></script>
 <!--css-->
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css"/>
 <link rel="stylesheet" href="css/pc.css"/>
 <!--js-->
 <script src="js/device.min.js"></script>
 <script src="js/device_url_pc.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="js/loading_pc.js"></script>
 <script src="js/event_box.js"></script>
 <script src="js/common_pc.js"></script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 (function() {
     window._CiQ11708 = window._CiQ11708 || [];
     window._CiQ11708.push(['_cookieUseRootDomain', true]);
@@ -40,7 +42,7 @@
     var h = document.getElementsByTagName('script')[0];
     h.parentNode.insertBefore(c, h);
 })();
-</script>
+</script>-->
 <noscript>
 <link href="//collect.cn.miaozhen.com/refer/collect?i=11708&v=13922245942&pu=http%3A//%28NoScriptPageviews%29&pt=NoScriptPageviews&ru=http%3A//%28NoScriptClients%29&csh=1000&csw=1000&css=10" rel="stylesheet" type="text/css" />
 </noscript>
@@ -89,9 +91,6 @@
     <div class="footer">
         <div class="footer_logo"></div>
 		<div class="footer_logo2"></div>
-        <!--<div class="footer_link">
-            <a href="#" target="blank">关于我们</a> | <a href="#" target="blank">使用条款</a> | <a href="#" target="blank">隐私保护声明</a> | <a href="#" target="blank">联系我们</a>
-        </div>-->
     </div>
 	<div class="event_popup">
 		<div class="closebtn"></div>
@@ -100,7 +99,7 @@
 				<div class="video">
 					<div class="event_popup_1_videobtn" onclick="dataLayer.push({'event': 'PC-Play'});"></div>
 					<video width="601" height="338" id="event_popup_1_video" controls>
-						<source src="images/video.mp4" type="video/mp4">
+						<source src="http://bayertest.oss-cn-hangzhou.aliyuncs.com/yasmin95s.mp4" type="video/mp4">
 						Your browser does not support HTML5 video.
 					</video>
 				</div>
@@ -115,24 +114,37 @@
 					<div class="btn getsecret_btn" onclick="dataLayer.push({'event': 'PC-MaShangGetNvShengMiMi'});"></div>
 					<div class="btn share_btn" onclick="dataLayer.push({'event': 'PC-BenZouXiangGao'});"></div>
 				</div>
-				<!--<canvas id="event_popup_3_ani" width="750" height="1334"></canvas>-->
 				<div class="event_popup_3_ani">
 					<div class="closebtn"></div>
 					<div class="cut_1 cut">
 						<div class="pic"><img src="images/pc_event_popup_2_cut1_pic.jpg"></div>
-						<div class="word"><img src="images/pc_event_popup_2_cut1_word.png"></div>
+						<div class="word">
+							<div class="next_btn"></div>
+							<img src="images/pc_event_popup_2_cut1_word.png">
+						</div>
 					</div>
 					<div class="cut_2 cut">
 						<div class="pic"><img src="images/pc_event_popup_2_cut2_pic.jpg"></div>
-						<div class="word"><img src="images/pc_event_popup_2_cut2_word.png"></div>
+						<div class="word">
+							<div class="next_btn"></div>
+							<div class="prev_btn"></div>
+							<img src="images/pc_event_popup_2_cut2_word.png">
+						</div>
 					</div>
 					<div class="cut_3 cut">
 						<div class="pic"><img src="images/pc_event_popup_2_cut3_pic.jpg"></div>
-						<div class="word"><img src="images/pc_event_popup_2_cut3_word.png"></div>
+						<div class="word">
+							<div class="next_btn"></div>
+							<div class="prev_btn"></div>
+							<img src="images/pc_event_popup_2_cut3_word.png">
+						</div>
 					</div>
 					<div class="cut_4 cut">
 						<div class="pic"><img src="images/pc_event_popup_2_cut4_pic.jpg"></div>
-						<div class="word"><img src="images/pc_event_popup_2_cut4_word.png"></div>
+						<div class="word">
+							<div class="prev_btn"></div>
+							<img src="images/pc_event_popup_2_cut4_word.png">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -159,7 +171,6 @@
 						</div>
 					</div>
 				</div>
-				<!--<canvas id="event_popup_2_ani" width="750" height="1334"></canvas>-->
 			</div>
 			<div class="popup event4">
 				<div class="btn_box">
@@ -169,11 +180,12 @@
 				<div class="event4_animate">
 					<div class="word1"></div>
 					<div class="word2"></div>
-					<div class="word3"></div>
+					<div class="word3">
+						<div class="prev_btn"></div>
+					</div>
 					<div class="pd"></div>
 					<div class="person"></div>
 				</div>
-				<!--<canvas id="event_popup_4_ani" width="750" height="1334"></canvas>-->
 			</div>
 			<div class="popup event5">
 				<div class="pic">

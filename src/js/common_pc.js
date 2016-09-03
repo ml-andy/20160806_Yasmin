@@ -38,8 +38,10 @@
 	//AddListener
 	$('.coc_qrcode').on('mouseover',coc_qrcode_over);
 	$('.coc_qrcode').on('mouseout',coc_qrcode_out);
-	$('.event4_animate .word1').on('click',event_popup_4_ani_click);
-	$('.event_popup_3_ani .word').on('click',event_popup_3_ani_click);
+	$('.event4_animate .word1').on('click',event_popup_4_ani_click_next);
+	$('.event4_animate .word3').on('click',event_popup_4_ani_click_prev);
+	$('.event_popup_3_ani .word .next_btn').on('click',event_popup_3_ani_click_next);
+	$('.event_popup_3_ani .word .prev_btn').on('click',event_popup_3_ani_click_prev);
 	$('.event_line .icon').on('click',event_line_icon_click);
 	$('.event_line .icon').on('mouseout',event_line_icon_out);
 	$('.menu_link').on('click',menu_link_click);
@@ -114,6 +116,7 @@
 	$(window).load(window_load);
 	function window_load(){
 		o.street_width = $('.street').eq(0).width();
+		$(".event2_animate .word_out").mCustomScrollbar({scrollInertia:300,scrollEasing:'linear'});
 		o.loading_num +=1;
 		createjs_event_box_bg();
 	}
@@ -122,8 +125,20 @@
 			o.loading.remove(); 
 			o.loading_stage = false; 
 			sound_btn_click();
-			track_pg('page02','進到小鎮畫面');
+			// track_pg('page02','進到小鎮畫面');
+			init_track();
 		});
+	}
+	function init_track(){
+		window._CiQ11708 = window._CiQ11708 || [];
+		window._CiQ11708.push(['_cookieUseRootDomain', true]);
+		var c = document.createElement('script');
+		c.type = 'text/javascript';
+		c.async = true;
+		c.charset = 'utf-8';
+		c.src = '//collect.cn.miaozhen.com/ca/11708';
+		var h = document.getElementsByTagName('script')[0];
+		h.parentNode.insertBefore(c, h);
 	}
 	function creatjs_loading(){
 		var canvas, exportRoot;
@@ -183,25 +198,41 @@
 	function coc_qrcode_out(){
 		 $(this).removeClass('on');
 	}
-	function event_popup_4_ani_click(){
-
+	function event_popup_4_ani_click_next(){
 		//tracker
-		track_btn('藥局popup_文字按鈕1',1);
+		track_btn('藥局popup_文字按鈕1_next',1);
 
 		clearTimeout(o.event_popup_4_stage_play_timeout);
-		play_popup_4();
+		play_popup_4('next');
 	}
-	function event_popup_3_ani_click(){
-
+	function event_popup_4_ani_click_prev(){
 		//tracker
-		var _index  = $(this).parent().index();
-		if(_index == 1) track_btn('咖啡館popup_文字按鈕_1',1);
-		else if(_index == 2) track_btn('咖啡館popup_文字按鈕_2',1);
-		else if(_index == 3) track_btn('咖啡館popup_文字按鈕_3',1);
+		track_btn('藥局popup_文字按鈕1_prev',1);
+
+		clearTimeout(o.event_popup_4_stage_play_timeout);
+		play_popup_4('prev');
+	}
+	function event_popup_3_ani_click_next(){
+		//tracker
+		var _index  = $(this).parent().parent().index();
+		if(_index == 1) track_btn('咖啡館popup_文字按鈕_1_next',1);
+		else if(_index == 2) track_btn('咖啡館popup_文字按鈕_2_next',1);
+		else if(_index == 3) track_btn('咖啡館popup_文字按鈕_3_next',1);
+		else if(_index == 4) track_btn('咖啡館popup_文字按鈕_4_next',1);
 		
 		clearTimeout(o.event_popup_3_stage_play_timeout);
-		play_popup_3();
+		play_popup_3('next');
+	}
+	function event_popup_3_ani_click_prev(){
+		//tracker
+		var _index  = $(this).parent().parent().index();
+		if(_index == 1) track_btn('咖啡館popup_文字按鈕_1_prev',1);
+		else if(_index == 2) track_btn('咖啡館popup_文字按鈕_2_prev',1);
+		else if(_index == 3) track_btn('咖啡館popup_文字按鈕_3_prev',1);
+		else if(_index == 4) track_btn('咖啡館popup_文字按鈕_4_prev',1);
 		
+		clearTimeout(o.event_popup_3_stage_play_timeout);
+		play_popup_3('prev');
 	}
 	function play_popup_2(){
 		o.event_popup_2_stage_play_num +=1;
@@ -210,19 +241,29 @@
 			if(i>o.event_popup_2_stage_play_num) break;
 			$('.event2_animate .word').eq(i).addClass('on');
 		}
+		$('.event2_animate .word_out').mCustomScrollbar('scrollTo','bottom');
 		var _time = Math.random() * 2 * 1000 + 2000;
 		o.event_popup_2_stage_play_timeout = setTimeout(play_popup_2,_time);
 	}
-	function play_popup_3(){
-		o.event_popup_3_stage_play_num +=1;
-		if(o.event_popup_3_stage_play_num >= $('.event_popup_3_ani .cut').length) return;
+	function play_popup_3(_txt){
+		if(_txt == 'prev'){
+			o.event_popup_3_stage_play_num -=1;
+			if(o.event_popup_3_stage_play_num <0) o.event_popup_3_stage_play_num=0;
+		}else{
+			o.event_popup_3_stage_play_num +=1;
+			if(o.event_popup_3_stage_play_num >= $('.event_popup_3_ani .cut').length) return;
+		}
 		$('.event_popup_3_ani .cut').removeClass('on').eq(o.event_popup_3_stage_play_num).addClass('on');
-		
 		o.event_popup_3_stage_play_timeout = setTimeout(play_popup_3,5000);
 	}
-	function play_popup_4(){
-		o.event_popup_4_stage_play_num +=1;
-		if(o.event_popup_4_stage_play_num >= 3) return;
+	function play_popup_4(_txt){
+		if(_txt == 'prev'){
+			o.event_popup_4_stage_play_num -=1;
+			if(o.event_popup_4_stage_play_num < 0) o.event_popup_4_stage_play_num = 0;
+		}else{
+			o.event_popup_4_stage_play_num +=1;
+			if(o.event_popup_4_stage_play_num >= 3) return;
+		}
 		$('.event4_animate').removeClass('cut1').removeClass('cut2').addClass('cut'+o.event_popup_4_stage_play_num);
 		o.event_popup_4_stage_play_timeout = setTimeout(play_popup_4,5000);
 	}
@@ -254,17 +295,14 @@
 		if(_index == 0){
 			track_btn('返回小鎮',1);
 			track_pg('page02','進到小鎮畫面');
-			// $('.menubtn').trigger('click');
 		}
 		else if(_index == 1){
 			track_btn('觀看影片',1);
-			// $('.menubtn').trigger('click');
 			o.now_event = 1;
 			show_pop(true);
 		}
 		else if(_index == 2) {
 			track_btn('發現秘訣',1);
-			// $('.menubtn').trigger('click');
 			o.now_event = 4;
 			show_pop(true);
 		}
@@ -277,12 +315,6 @@
 			else if( o.event_box_bg_mc.currentFrame == 27) o.event_box_bg_stage_play=false;
 		}
 		if(o.loading_stage) o.loading_stage.update();
-		// if(o.event_popup_2_stage_play) o.event_popup_2_stage.update();
-		// if(o.event_popup_3_stage_play) o.event_popup_3_stage.update();
-		// if(o.event_popup_4_stage_play){
-		// 	o.event_popup_4_stage.update();
-		// 	if(o.event_popup_4_ani.currentFrame == o.event_popup_4_ani.totalFrames - 1) event_popup_4_ani_complete();
-		// }
 		if(o.street_ctrl){
 			var _tmp = 2* (o.mouse_pageX - $(window).width()/2) / $(window).width() / 2;
 			o.org_street += _tmp;
@@ -296,11 +328,9 @@
 		if($('.sound_btn').hasClass('off')){
 			$('#bgm')[0].play();
 			$('.sound_btn').removeClass('off');
-			// track_btn('音樂播放',1);
 		}else{
 			$('#bgm')[0].pause();
 			$('.sound_btn').addClass('off');
-			// track_btn('音樂關閉',1);
 		}
 	}
 	function playvideo(_t){
@@ -317,7 +347,6 @@
 	}
 	function show_pop(_t){
 		if(_t){
-			// o.street_ctrl = false;
 			o.has_auto_play_pop.push( o.now_event );
 			$('.event_popup .popup').eq(o.now_event - 1).show();
 			if(o.now_event == 5) $('.event_popup .closebtn').addClass('on');
@@ -363,17 +392,13 @@
 		if(_t){
 			if(o.now_event == 3){
 				play_popup_2();
-				// o.event_popup_2_ani.gotoAndPlay(1);
-				// o.event_popup_2_stage_play = true;
 			}
 			else if(o.now_event == 2){
 				play_popup_3();
-				// o.event_popup_2_stage_play = false;
 			}
 			else if(o.now_event == 4){
 				$('.event_popup .closebtn').removeClass('on');
 				play_popup_4();
-				// o.event_popup_2_stage_play = false;
 			}
 
 			//tracker
@@ -392,7 +417,6 @@
 				playvideo(false);
 			}
 			else if(o.now_event == 3){
-				// o.event_popup_2_ani.gotoAndStop(1);
 				clearTimeout(o.event_popup_2_stage_play_timeout); 
 			}
 			else if(o.now_event == 4){
@@ -413,7 +437,6 @@
 		show_pop(true);
 	}
 	function play_event_box(_t,_n){
-		// if(!o.iknow_click) return;
 		if(_t){
 			if(o.now_event == _n) return;
 			else o.now_event = _n;
@@ -443,10 +466,6 @@
 			$('.event_line').find('.icon').removeClass('on');
 		}
 	}
-	// function event_box_bg_complete(){
-	// 	o.event_box_bg_mc.stop();
-	// 	o.event_box_bg_stage_play = false;
-	// }
 	function street_all(){
 		var _this = $(this);
 		_this.bind('mousemover', function(){
@@ -456,7 +475,6 @@
 
 		function _touchmove(e){
 			o.mouse_pageX = e.pageX;
-			// o.street_ctrl = true;
 		}
 	}
 	function iknow_click(_t){

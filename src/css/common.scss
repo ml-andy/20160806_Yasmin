@@ -1,7 +1,7 @@
 @import "base.scss";
 
 $vpw:0;
-@media screen and (max-width: 750px) {
+// @media screen and (max-width: 1024px) {
 	.loading_flower{
 		@include flt;
 		z-index: 99998;
@@ -360,6 +360,83 @@ $vpw:0;
 						}
 					}
 				}
+				.event2_animate{
+					@include alt;
+					background-image: url(../images/event_popup_3_bg.jpg);
+					background-repeat: no-repeat;
+					background-size: 100% auto;
+					background-position: center top;
+					.word_out{
+						@include altvw(680,800,50,135);
+						overflow-y: scroll; /* has to be scroll, not auto */
+						-webkit-overflow-scrolling: touch;
+						.word_in{
+							@include r(getVW(650));
+							margin-right: getVW(30);
+							.word{
+								@include r;
+								margin-top: getVW(30);
+								background-repeat: no-repeat;
+								background-size: contain;
+								background-position: left center;
+								display: none;
+								&.on{
+									display: block;
+								}
+								&.word1{
+									height: getVW(202);
+									background-image: url(../images/pc_event_popup_3_word1.png);
+									background-position: right center;
+								}
+								&.word2{
+									height: getVW(109);
+									background-image: url(../images/pc_event_popup_3_word2.png);
+								}
+								&.word3{
+									height: getVW(224);
+									background-image: url(../images/pc_event_popup_3_word3.png);
+									background-position: right center;
+								}
+								&.word4{
+									height: getVW(220);
+									background-image: url(../images/pc_event_popup_3_word4.png);
+								}
+								&.word5{
+									height: getVW(115);
+									background-image: url(../images/pc_event_popup_3_word5.png);
+									background-position: right center;
+								}
+								&.word6{
+									height: getVW(227);
+									background-image: url(../images/pc_event_popup_3_word6.png);
+									background-position: right center;
+								}
+								&.word7{
+									height: getVW(316);
+									background-image: url(../images/pc_event_popup_3_word7.png);
+									background-position: right center;
+								}
+								&.word8{
+									height: getVW(145);
+									background-image: url(../images/pc_event_popup_3_word8.png);
+								}
+								&.word9{
+									height: getVW(293);
+									background-image: url(../images/pc_event_popup_3_word9.png);
+									background-position: right center;
+								}
+								&.word10{
+									height: getVW(192);
+									background-image: url(../images/pc_event_popup_3_word10.png);
+								}
+								&.word11{
+									height: getVW(190);
+									background-image: url(../images/pc_event_popup_3_word11.png);
+								}
+							}
+						}
+					}
+				}
 				canvas{
 					@include altvw(750,1334,0,0,-375);
 					left: 50%;
@@ -387,9 +464,28 @@ $vpw:0;
 						}
 					}
 				}
+				.next_btn{
+					@include arbvw(47,47,42,155);
+					background-image: url(../images/pc_event_popup_2_next_btn.png);
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: center center;
+					cursor: pointer;
+					z-index: 1;
+				}
+				.prev_btn{
+					@include arbvw(47,47,110,155);
+					background-image: url(../images/pc_event_popup_2_prev_btn.png);
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: center center;
+					cursor: pointer;
+					z-index: 1;
+				}
 				canvas{
-					@include altvw(750,1334,0,0,-375);
-					left: 50%;
+					@include alt(auto,100%,50%);
+					@include transform(translate(-50%,0));
+					// height: calc(95% - 28vw);
 					z-index: 0;
 				}
 			}
@@ -416,6 +512,18 @@ $vpw:0;
 							display: none;
 						}
 					}
+				}
+				.prev_btn{
+					@include artvw(80,80,110,155);
+					top: 70vw;
+					right: 22vw;
+					background-image: url(../images/event4_prev_btn.png);
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: center center;
+					cursor: pointer;
+					z-index: 2;
+					display: none;
 				}
 				canvas{
 					@include altvw(750,1334,0,0,-375);
@@ -721,4 +829,4 @@ $vpw:0;
 			@include transform(rotateZ(360deg));
 		}
 	}
-}
+// }

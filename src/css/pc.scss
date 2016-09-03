@@ -395,12 +395,13 @@ $vpw:1;
 				background-size: contain;
 				background-position: center center;
 				.word_out{
-					@include alt(478px,717px,50%,240px,-232px);
-					overflow: hidden;
+					@include alt(514px,717px,50%,240px,-242px);
+					overflow: auto;
 					.word_in{
-						@include alb(100%,auto);
+						@include r;
 						.word{
-							@include r;
+							@include r(478px);
+							margin-right: 36px;
 							margin-top: 20px;
 							background-repeat: no-repeat;
 							background-size: contain;
@@ -515,9 +516,29 @@ $vpw:1;
 						transition: 0.5s;
 					}
 					.word{
-						cursor: pointer;
 						opacity: 0;
 						transition: 0.5s;
+						.next_btn{
+							@include arb(30px,30px,10px,10px);
+							background-image: url(../images/pc_event_popup_2_next_btn.png);
+							background-size: contain;
+							background-repeat: no-repeat;
+							background-position: center center;
+							cursor: pointer;
+							z-index: 1;
+						}
+						.prev_btn{
+							@include arb(30px,30px,50px,10px);
+							background-image: url(../images/pc_event_popup_2_prev_btn.png);
+							background-size: contain;
+							background-repeat: no-repeat;
+							background-position: center center;
+							cursor: pointer;
+							z-index: 1;
+						}
+						img{
+							z-index: 0;
+						}
 					}
 					&.cut_1{
 						@include art(738px,670px);
@@ -552,8 +573,7 @@ $vpw:1;
 							@include alt(584px,580px,0,26px);
 						}
 						.word{
-							@include art(355px,204px,0,510px);
-							cursor: auto;
+							@include art(355px,180px,0,510px);
 						}
 					}
 					&.on{
@@ -637,7 +657,16 @@ $vpw:1;
 					background-position: center center;
 					opacity: 0;
 					transition:1s;
+					cursor: pointer;
 					z-index: 1;
+					.prev_btn{
+						@include arb(30px,30px,50%,15%,-15px);
+						background-image: url(../images/pc_event_popup_2_prev_btn.png);
+						background-size: contain;
+						background-repeat: no-repeat;
+						background-position: center center;
+						z-index: 1; 
+					}
 				}
 				.pd{
 					@include alt(471px,203px,50%,50%,-203px,104px);
@@ -656,7 +685,7 @@ $vpw:1;
 					background-position: left bottom;
 					opacity: 0;
 					transition:1s;
-					z-index: 2;
+					z-index: 0;
 				}
 				&.cut1{
 					.word1{
@@ -1124,7 +1153,7 @@ $vpw:1;
 						background-position: left bottom;
 						opacity: 0;
 						transition:1s;
-						z-index: 2;
+						z-index: 0;
 					}
 					&.cut1{
 						.word1{
@@ -1340,12 +1369,13 @@ $vpw:1;
 					background-size: contain;
 					background-position: center center;
 					.word_out{
-						@include alt(478px,717px,50%,240px,-232px);
-						overflow: hidden;
+						@include alt(514px,717px,50%,240px,-242px);
+						overflow: auto;
 						.word_in{
-							@include alb(100%,auto);
+							@include r;
 							.word{
-								@include r;
+								@include r(478px);
+								margin-right: 36px;
 								margin-top: 20px;
 								background-repeat: no-repeat;
 								background-size: contain;
@@ -1460,7 +1490,6 @@ $vpw:1;
 							transition: 0.5s;
 						}
 						.word{
-							cursor: pointer;
 							opacity: 0;
 							transition: 0.5s;
 						}
@@ -1497,7 +1526,7 @@ $vpw:1;
 								@include alt(584px,580px,0,26px);
 							}
 							.word{
-								@include art(355px,204px,0,510px);
+								@include art(355px,180px,0,510px);
 								cursor: auto;
 							}
 						}
@@ -1605,7 +1634,7 @@ $vpw:1;
 						background-position: left bottom;
 						opacity: 0;
 						transition:1s;
-						z-index: 2;
+						z-index: 0;
 					}
 					&.cut1{
 						.word1{
