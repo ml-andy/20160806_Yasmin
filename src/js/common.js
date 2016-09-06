@@ -13,7 +13,7 @@ $(document).ready(function(){
 		menu_timeout:'',
 		event_box_timeout:'',
 		iknow_timeout:'',
-		iknow_click:false,
+		iknow_click:true,
 		event_box_bg_stage_play: false,
 		org_street: 110,
 		street_alpha: 0,
@@ -124,7 +124,7 @@ $(document).ready(function(){
 			street_move();
 			o.tip_box_stage_play = true;
 			// track_pg('page02','提示畫面');
-			// init_track();
+			init_track();
 			o.loading.fadeOut(300,function(){ o.loading.remove(); o.loading_stage = false;});
 		}
 	}
@@ -142,6 +142,25 @@ $(document).ready(function(){
 		andyCanTrack = true;
 	}
 	function creatjs_loading(){
+		o.event_box_bg = {
+			images: ["images/event_box_bg.png"],
+			frames: {width:750, height:260},
+			animations: {
+				stand:0,
+				show:{
+						frames: [0,8,1,9,2,10,3,11,4,12,5,13,6,14,7],
+						speed: 1
+				},
+				backshow:{
+						frames: [7,14,6,13,5,12,4,11,3,10,2,9,1,8,0],
+						speed: 1
+				}
+			}
+		};
+		o.event_box_bg_spriteSheet = new createjs.SpriteSheet(o.event_box_bg);
+		o.event_box_bg_canvas = document.getElementById("event_box_bg");
+		o.event_box_bg_stage = new createjs.Stage(o.event_box_bg_canvas);
+		
 		var canvas, exportRoot;
 		canvas = document.getElementById("loading");
 		images = images||{};
@@ -167,9 +186,9 @@ $(document).ready(function(){
 			o.loading_stage.update();
 			createjs.Ticker.setFPS(30);
 			createjs.Ticker.addEventListener("tick", StageListenter);
-			o.loading_num +=1;
-			// check_loading();
-			creatjs_tip_box();
+			o.loading_num +=2;
+			check_loading();
+			// creatjs_tip_box();
 		}
 	}
 	function creatjs_tip_box(){
@@ -463,7 +482,7 @@ $(document).ready(function(){
 	function StageListenter(){
 		if(o.event_box_bg_stage_play) o.event_box_bg_stage.update();
 		if(o.loading_stage) o.loading_stage.update();
-		if(o.tip_box_stage_play) o.tip_box_stage.update();
+		// if(o.tip_box_stage_play) o.tip_box_stage.update();
 
 		// if(o.event_popup_2_stage_play) o.event_popup_2_stage.update();
 		if(o.event_popup_3_stage_play){
@@ -665,7 +684,7 @@ $(document).ready(function(){
 				if(!_has){
 					show_pop(true);
 				}
-			},4000);
+			},3000);
 		}else{
 			if(o.now_event == 0) return;
 			else o.now_event = 0;
