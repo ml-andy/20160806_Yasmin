@@ -342,10 +342,12 @@ $vpw:1;
 				}
 			}
 			.btn_box{
-				@include alb(818px,46px,50%,-12.3%,-409px);
+				// @include alb(818px,46px,50%,-12.3%,-409px);
+				@include alb(818px,46px,50%,16%,-409px);
 				transition-delay: 0.3s;
 				transition:0.5s;
-				opacity: 0;
+				// opacity: 0;
+				opacity: 1;
 				.btn{
 					@include alt(232px,46px);
 					background-repeat: no-repeat;
@@ -370,7 +372,7 @@ $vpw:1;
 		&.event2{
 			background-color: rgba(255,255,255,0.6);
 			.btn_box{
-				@include alb(195px,94px,50%,256px,387px);
+				@include alb(195px,94px,66%,256px,0);
 				z-index: 1;
 				.btn{
 					@include alt(195px,39px);
@@ -389,19 +391,19 @@ $vpw:1;
 				}
 			}
 			.event2_animate{
-				@include alb(670px,1041px,50%,0,-335px);
+				@include alb(49.5%,100%,25%,0,0);
 				background-image: url(../images/pc_event_popup_3_bg.png);
 				background-repeat: no-repeat;
 				background-size: contain;
 				background-position: center center;
 				.word_out{
-					@include alt(514px,717px,50%,240px,-242px);
+					@include alt(49%,68%,27%,24%,0);
 					overflow: auto;
 					.word_in{
 						@include r;
 						.word{
-							@include r(478px);
-							margin-right: 36px;
+							@include r(94%);
+							margin-right: 6%;
 							margin-top: 20px;
 							background-repeat: no-repeat;
 							background-size: contain;
@@ -411,53 +413,75 @@ $vpw:1;
 								display: block;
 							}
 							&.word1{
-								height: 149px;
+								// height: 149px;
+								height: 0;
+								padding-bottom: 31.17%;
 								background-image: url(../images/pc_event_popup_3_word1.png);
 								background-position: right center;
 							}
 							&.word2{
-								height: 80px;
+								// height: 80px;
+								height: 0;
+								padding-bottom: 16.736%;
 								background-image: url(../images/pc_event_popup_3_word2.png);
 							}
 							&.word3{
-								height: 164px;
+								// height: 164px;
+								height: 0;
+								padding-bottom: 34.309%;
 								background-image: url(../images/pc_event_popup_3_word3.png);
 								background-position: right center;
 							}
 							&.word4{
-								height: 161px;
+								// height: 161px;
+								height: 0;
+								padding-bottom: 33.682%;
 								background-image: url(../images/pc_event_popup_3_word4.png);
 							}
 							&.word5{
-								height: 84px;
+								// height: 84px;
+								height: 0;
+								padding-bottom: 17.573%;
 								background-image: url(../images/pc_event_popup_3_word5.png);
 								background-position: right center;
 							}
 							&.word6{
-								height: 164px;
+								// height: 164px;
+								height: 0;
+								padding-bottom: 34.309%;
 								background-image: url(../images/pc_event_popup_3_word6.png);
 								background-position: right center;
 							}
 							&.word7{
-								height: 232px;
+								// height: 232px;
+								height: 0;
+								padding-bottom: 48.535%;
 								background-image: url(../images/pc_event_popup_3_word7.png);
 								background-position: right center;
 							}
 							&.word8{
-								height: 106px;
+								// height: 106px;
+								height: 0;
+								padding-bottom: 22.175%;
 								background-image: url(../images/pc_event_popup_3_word8.png);
 							}
 							&.word9{
-								height: 215px;
+								// height: 215px;
+								height: 0;
+								padding-bottom: 44.979%;
 								background-image: url(../images/pc_event_popup_3_word9.png);
 								background-position: right center;
 							}
 							&.word10{
-								height: 141px;
+								// height: 141px;
+								height: 0;
+								padding-bottom: 29.497%;
 								background-image: url(../images/pc_event_popup_3_word10.png);
 							}
 							&.word11{
-								height: 124px;
+								// height: 124px;
+								height: 0;
+								padding-bottom: 25.941%;
 								background-image: url(../images/pc_event_popup_3_word11.png);
 							}
 						}
@@ -486,7 +510,7 @@ $vpw:1;
 				}
 			}
 			.btn_box{
-				@include alb(420px,39px,50%,50%,-210px,-325px);
+				@include alb(420px,39px,50%,50%,-210px,-295px);
 				z-index: 1;
 				.btn{
 					@include alt(195px,39px);
@@ -506,7 +530,7 @@ $vpw:1;
 			}
 			.event_popup_3_ani{
 				@include am(930px,670px);
-				@include transform(scale(0.9) translate(-57%,-62%));
+				@include transform(scale(0.8) translate(-65%,-67%));
 				z-index: 0;
 				.cut{
 					z-index: 0;
@@ -1126,7 +1150,7 @@ $vpw:1;
 						z-index: 0;
 					}
 					.word3{
-						@include alt(35%,70%,50%,50%,-73px,-438px);
+						@include alt(35%,70%,37%,50%,0,-438px);
 						background-image: url(../images/pc_event_popup_4_cut2_word2.png);
 						background-repeat: no-repeat;
 						background-size: contain;
@@ -1187,6 +1211,132 @@ $vpw:1;
 					z-index: 0;
 					display: none;
 				}
+			}
+			&.event2{
+				background-color: rgba(255,255,255,0.6);
+				.btn_box{
+					@include alb(195px,94px,70%,256px,0);
+					z-index: 1;
+					.btn{
+						@include alt(195px,39px);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+						cursor: pointer;
+						&:nth-child(1){
+							top: 0;
+							background-image: url(../images/pc_event_popup_2_btn1.png);
+						}
+						&:nth-child(2){
+							top: 55px;
+							background-image: url(../images/pc_event_popup_2_btn2.png);
+						}
+					}
+				}
+				.event2_animate{
+					@include alb(49.5%,100%,25%,0,0);
+					background-image: url(../images/pc_event_popup_3_bg.png);
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center center;
+					.word_out{
+						@include alt(59%,68%,22%,24%,0);
+						overflow: auto;
+						.word_in{
+							@include r;
+							.word{
+								@include r(94%);
+								margin-right: 6%;
+								margin-top: 20px;
+								background-repeat: no-repeat;
+								background-size: contain;
+								background-position: left center;
+								display: none;
+								&.on{
+									display: block;
+								}
+								&.word1{
+									// height: 149px;
+									height: 0;
+									padding-bottom: 31.17%;
+									background-image: url(../images/pc_event_popup_3_word1.png);
+									background-position: right center;
+								}
+								&.word2{
+									// height: 80px;
+									height: 0;
+									padding-bottom: 16.736%;
+									background-image: url(../images/pc_event_popup_3_word2.png);
+								}
+								&.word3{
+									// height: 164px;
+									height: 0;
+									padding-bottom: 34.309%;
+									background-image: url(../images/pc_event_popup_3_word3.png);
+									background-position: right center;
+								}
+								&.word4{
+									// height: 161px;
+									height: 0;
+									padding-bottom: 33.682%;
+									background-image: url(../images/pc_event_popup_3_word4.png);
+								}
+								&.word5{
+									// height: 84px;
+									height: 0;
+									padding-bottom: 17.573%;
+									background-image: url(../images/pc_event_popup_3_word5.png);
+									background-position: right center;
+								}
+								&.word6{
+									// height: 164px;
+									height: 0;
+									padding-bottom: 34.309%;
+									background-image: url(../images/pc_event_popup_3_word6.png);
+									background-position: right center;
+								}
+								&.word7{
+									// height: 232px;
+									height: 0;
+									padding-bottom: 48.535%;
+									background-image: url(../images/pc_event_popup_3_word7.png);
+									background-position: right center;
+								}
+								&.word8{
+									// height: 106px;
+									height: 0;
+									padding-bottom: 22.175%;
+									background-image: url(../images/pc_event_popup_3_word8.png);
+								}
+								&.word9{
+									// height: 215px;
+									height: 0;
+									padding-bottom: 44.979%;
+									background-image: url(../images/pc_event_popup_3_word9.png);
+									background-position: right center;
+								}
+								&.word10{
+									// height: 141px;
+									height: 0;
+									padding-bottom: 29.497%;
+									background-image: url(../images/pc_event_popup_3_word10.png);
+								}
+								&.word11{
+									// height: 124px;
+									height: 0;
+									padding-bottom: 25.941%;
+									background-image: url(../images/pc_event_popup_3_word11.png);
+								}
+							}
+						}
+					}
+				}
+				
+				// canvas{
+				// 	@include am(100%,80%);
+				// 	width: getVH(750*0.8);
+				// 	z-index: 0;
+				// }
 			}
 		}
 	}
@@ -1343,7 +1493,8 @@ $vpw:1;
 			&.event2{
 				background-color: rgba(255,255,255,0.6);
 				.btn_box{
-					@include alb(195px,94px,50%,256px,30%);
+					// @include alb(195px,94px,50%,256px,30%);
+					@include alb(195px,94px,66%,256px,0);
 					z-index: 1;
 					.btn{
 						@include alt(195px,39px);
@@ -1361,21 +1512,97 @@ $vpw:1;
 						}
 					}
 				}
+				// .event2_animate{
+				// 	@include alb(670px,1041px,50%,-7%,-335px);
+				// 	@include transform(scale(0.9));
+				// 	background-image: url(../images/pc_event_popup_3_bg.png);
+				// 	background-repeat: no-repeat;
+				// 	background-size: contain;
+				// 	background-position: center center;
+				// 	.word_out{
+				// 		@include alt(514px,717px,50%,240px,-242px);
+				// 		overflow: auto;
+				// 		.word_in{
+				// 			@include r;
+				// 			.word{
+				// 				@include r(478px);
+				// 				margin-right: 36px;
+				// 				margin-top: 20px;
+				// 				background-repeat: no-repeat;
+				// 				background-size: contain;
+				// 				background-position: left center;
+				// 				display: none;
+				// 				&.on{
+				// 					display: block;
+				// 				}
+				// 				&.word1{
+				// 					height: 149px;
+				// 					background-image: url(../images/pc_event_popup_3_word1.png);
+				// 					background-position: right center;
+				// 				}
+				// 				&.word2{
+				// 					height: 80px;
+				// 					background-image: url(../images/pc_event_popup_3_word2.png);
+				// 				}
+				// 				&.word3{
+				// 					height: 164px;
+				// 					background-image: url(../images/pc_event_popup_3_word3.png);
+				// 					background-position: right center;
+				// 				}
+				// 				&.word4{
+				// 					height: 161px;
+				// 					background-image: url(../images/pc_event_popup_3_word4.png);
+				// 				}
+				// 				&.word5{
+				// 					height: 84px;
+				// 					background-image: url(../images/pc_event_popup_3_word5.png);
+				// 					background-position: right center;
+				// 				}
+				// 				&.word6{
+				// 					height: 164px;
+				// 					background-image: url(../images/pc_event_popup_3_word6.png);
+				// 					background-position: right center;
+				// 				}
+				// 				&.word7{
+				// 					height: 232px;
+				// 					background-image: url(../images/pc_event_popup_3_word7.png);
+				// 					background-position: right center;
+				// 				}
+				// 				&.word8{
+				// 					height: 106px;
+				// 					background-image: url(../images/pc_event_popup_3_word8.png);
+				// 				}
+				// 				&.word9{
+				// 					height: 215px;
+				// 					background-image: url(../images/pc_event_popup_3_word9.png);
+				// 					background-position: right center;
+				// 				}
+				// 				&.word10{
+				// 					height: 141px;
+				// 					background-image: url(../images/pc_event_popup_3_word10.png);
+				// 				}
+				// 				&.word11{
+				// 					height: 124px;
+				// 					background-image: url(../images/pc_event_popup_3_word11.png);
+				// 				}
+				// 			}
+				// 		}
+				// 	}
+				// }
 				.event2_animate{
-					@include alb(670px,1041px,50%,-7%,-335px);
-					@include transform(scale(0.9));
+					@include alb(49.5%,100%,25%,0,0);
 					background-image: url(../images/pc_event_popup_3_bg.png);
 					background-repeat: no-repeat;
 					background-size: contain;
 					background-position: center center;
 					.word_out{
-						@include alt(514px,717px,50%,240px,-242px);
+						@include alt(49%,68%,27%,24%,0);
 						overflow: auto;
 						.word_in{
 							@include r;
 							.word{
-								@include r(478px);
-								margin-right: 36px;
+								@include r(94%);
+								margin-right: 6%;
 								margin-top: 20px;
 								background-repeat: no-repeat;
 								background-size: contain;
@@ -1385,60 +1612,81 @@ $vpw:1;
 									display: block;
 								}
 								&.word1{
-									height: 149px;
+									// height: 149px;
+									height: 0;
+									padding-bottom: 31.17%;
 									background-image: url(../images/pc_event_popup_3_word1.png);
 									background-position: right center;
 								}
 								&.word2{
-									height: 80px;
+									// height: 80px;
+									height: 0;
+									padding-bottom: 16.736%;
 									background-image: url(../images/pc_event_popup_3_word2.png);
 								}
 								&.word3{
-									height: 164px;
+									// height: 164px;
+									height: 0;
+									padding-bottom: 34.309%;
 									background-image: url(../images/pc_event_popup_3_word3.png);
 									background-position: right center;
 								}
 								&.word4{
-									height: 161px;
+									// height: 161px;
+									height: 0;
+									padding-bottom: 33.682%;
 									background-image: url(../images/pc_event_popup_3_word4.png);
 								}
 								&.word5{
-									height: 84px;
+									// height: 84px;
+									height: 0;
+									padding-bottom: 17.573%;
 									background-image: url(../images/pc_event_popup_3_word5.png);
 									background-position: right center;
 								}
 								&.word6{
-									height: 164px;
+									// height: 164px;
+									height: 0;
+									padding-bottom: 34.309%;
 									background-image: url(../images/pc_event_popup_3_word6.png);
 									background-position: right center;
 								}
 								&.word7{
-									height: 232px;
+									// height: 232px;
+									height: 0;
+									padding-bottom: 48.535%;
 									background-image: url(../images/pc_event_popup_3_word7.png);
 									background-position: right center;
 								}
 								&.word8{
-									height: 106px;
+									// height: 106px;
+									height: 0;
+									padding-bottom: 22.175%;
 									background-image: url(../images/pc_event_popup_3_word8.png);
 								}
 								&.word9{
-									height: 215px;
+									// height: 215px;
+									height: 0;
+									padding-bottom: 44.979%;
 									background-image: url(../images/pc_event_popup_3_word9.png);
 									background-position: right center;
 								}
 								&.word10{
-									height: 141px;
+									// height: 141px;
+									height: 0;
+									padding-bottom: 29.497%;
 									background-image: url(../images/pc_event_popup_3_word10.png);
 								}
 								&.word11{
-									height: 124px;
+									// height: 124px;
+									height: 0;
+									padding-bottom: 25.941%;
 									background-image: url(../images/pc_event_popup_3_word11.png);
 								}
 							}
 						}
 					}
 				}
-				
 				// canvas{
 				// 	@include am(100%,80%);
 				// 	width: getVH(750*0.8);
@@ -1670,6 +1918,132 @@ $vpw:1;
 				}
 			}
 			
+		}
+	}
+}
+@media screen and (max-width: 1024px) {
+	.event_popup{
+		.popup{
+			&.event2{
+				background-color: rgba(255,255,255,0.6);
+				.btn_box{
+					@include alb(195px,94px,76%,256px,0);
+					z-index: 1;
+					.btn{
+						@include alt(195px,39px);
+						background-repeat: no-repeat;
+						background-size: contain;
+						background-position: center center;
+						cursor: pointer;
+						&:nth-child(1){
+							top: 0;
+							background-image: url(../images/pc_event_popup_2_btn1.png);
+						}
+						&:nth-child(2){
+							top: 55px;
+							background-image: url(../images/pc_event_popup_2_btn2.png);
+						}
+					}
+				}
+				.event2_animate{
+					@include alb(49.5%,100%,25%,0,0);
+					background-image: url(../images/pc_event_popup_3_bg.png);
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center center;
+					.word_out{
+						@include alt(77%,68%,13%,24%,0);
+						overflow: auto;
+						.word_in{
+							@include r;
+							.word{
+								@include r(94%);
+								margin-right: 6%;
+								margin-top: 20px;
+								background-repeat: no-repeat;
+								background-size: contain;
+								background-position: left center;
+								display: none;
+								&.on{
+									display: block;
+								}
+								&.word1{
+									// height: 149px;
+									height: 0;
+									padding-bottom: 31.17%;
+									background-image: url(../images/pc_event_popup_3_word1.png);
+									background-position: right center;
+								}
+								&.word2{
+									// height: 80px;
+									height: 0;
+									padding-bottom: 16.736%;
+									background-image: url(../images/pc_event_popup_3_word2.png);
+								}
+								&.word3{
+									// height: 164px;
+									height: 0;
+									padding-bottom: 34.309%;
+									background-image: url(../images/pc_event_popup_3_word3.png);
+									background-position: right center;
+								}
+								&.word4{
+									// height: 161px;
+									height: 0;
+									padding-bottom: 33.682%;
+									background-image: url(../images/pc_event_popup_3_word4.png);
+								}
+								&.word5{
+									// height: 84px;
+									height: 0;
+									padding-bottom: 17.573%;
+									background-image: url(../images/pc_event_popup_3_word5.png);
+									background-position: right center;
+								}
+								&.word6{
+									// height: 164px;
+									height: 0;
+									padding-bottom: 34.309%;
+									background-image: url(../images/pc_event_popup_3_word6.png);
+									background-position: right center;
+								}
+								&.word7{
+									// height: 232px;
+									height: 0;
+									padding-bottom: 48.535%;
+									background-image: url(../images/pc_event_popup_3_word7.png);
+									background-position: right center;
+								}
+								&.word8{
+									// height: 106px;
+									height: 0;
+									padding-bottom: 22.175%;
+									background-image: url(../images/pc_event_popup_3_word8.png);
+								}
+								&.word9{
+									// height: 215px;
+									height: 0;
+									padding-bottom: 44.979%;
+									background-image: url(../images/pc_event_popup_3_word9.png);
+									background-position: right center;
+								}
+								&.word10{
+									// height: 141px;
+									height: 0;
+									padding-bottom: 29.497%;
+									background-image: url(../images/pc_event_popup_3_word10.png);
+								}
+								&.word11{
+									// height: 124px;
+									height: 0;
+									padding-bottom: 25.941%;
+									background-image: url(../images/pc_event_popup_3_word11.png);
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }

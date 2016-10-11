@@ -366,8 +366,9 @@
 			popup_ani_play(true);
 			$('.event_popup').fadeIn(300,event_popup_start);
 			function event_popup_start(){ 
-				$('.event_popup .popup').eq(o.now_event - 1).addClass('on');
+				var _nog = o.now_event - 1;
 				o.street_ctrl = false;
+				$('.event_popup .popup').eq(_nog).addClass('on');
 			}
 		}else{
 			//tracker
