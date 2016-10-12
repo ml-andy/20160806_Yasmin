@@ -260,14 +260,14 @@ $vpw:1;
 	@include flb(100%,60px);
 	z-index: 999;
 	.footer_logo{
-		@include alt(185px,26px,50px);
+		@include alt(185px,26px,-10px);
 		background-image: url(../images/menu_logo.png);
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: center center;
 	}
 	.footer_logo2{
-		@include alt(239px,55px,258px,-12px);
+		@include alt(239px,55px,148px,-12px);
 		background-image: url(../images/footer_logo.png);
 		background-repeat: no-repeat;
 		background-size: contain;
@@ -1345,10 +1345,10 @@ $vpw:1;
 		@include flb(100%,30px,0,25px);
 		pointer-events: none;
 		.footer_logo{
-			@include alt(135px,26px,20px);
+			@include alt(135px,26px,-20px);
 		}
 		.footer_logo2{
-			@include alt(189px,55px,178px,-12px);
+			@include alt(189px,55px,90px,-12px);
 		}
 	}
 }
