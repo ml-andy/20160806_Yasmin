@@ -45,7 +45,7 @@ $vpw:1;
 	}
 	span{
 		@include altvw(27,3,113);
-		background-color: #ff7800;
+		background-color: #ff8ca4;
 		border: 1px solid #fff;
 		transition: 0.3s;
 		&.top{ top: getVW(10); }
@@ -244,6 +244,7 @@ $vpw:1;
 			&.m1{ background-image: url(../images/menu_link1.png); top: getVW(0); left: getVW(160); }
 			&.m2{ background-image: url(../images/menu_link2.png); top: getVW(68); left: getVW(80); }
 			&.m3{ background-image: url(../images/menu_link3.png); top: getVW(140); }
+			&.m4{ background-image: url(../images/menu_link4.png); top: getVW(210); }
 		}
 	}
 	.menu_logo{
@@ -260,10 +261,10 @@ $vpw:1;
 	@include flb(100%,60px);
 	z-index: 999;
 	.footer_logo{
-		@include alt(185px,26px,-10px);
+		@include alt(185px,50px,-10px,-10px);
 		background-image: url(../images/menu_logo.png);
 		background-repeat: no-repeat;
-		background-size: contain;
+		background-size: auto 100%;
 		background-position: center center;
 	}
 	.footer_logo2{
@@ -283,6 +284,56 @@ $vpw:1;
 			&:hover{
 				color: #000;
 			}
+		}
+	}
+}
+.adverserisk_pop{
+	@include flt;
+	z-index: 102;
+	background-color: rgba(255,255,255,0.85);
+	display: none;
+	.closebtn{
+		@include art(64px,64px);
+		cursor: pointer;
+		background-image: url(../images/btnclose.png);
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center center;
+	}
+	.main{
+		@include am(auto,auto);
+		@include font(18px,30px,#754c24);
+		text-align: center;
+		.org{
+			color:#f26522;
+		}
+	}
+}
+.exit_pop{
+	@include am(860px,400px);
+	z-index: 102;
+	display: none;
+	.main{
+		@include alt;
+		background-image: url(../images/popup_exit.jpg);
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center center;
+		.nook_btn{
+			@include alt(272px,49px,148px,280px);
+			cursor: pointer;
+			background-image: url(../images/popup_exit_nookbtn.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center center;
+		}
+		.ok_btn{
+			@include alt(251px,47px,450px,280px);
+			cursor: pointer;
+			background-image: url(../images/popup_exit_okbtn.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center center;
 		}
 	}
 }
@@ -600,9 +651,23 @@ $vpw:1;
 							@include art(355px,180px,0,510px);
 						}
 					}
+					&.cut_5{
+						@include art(710px,670px,30px);
+						.pic{
+							@include alt(584px,580px,0,26px);
+						}
+						.word{
+							@include art(355px,319px,0,364px);
+						}
+					}
 					&.on{
 						z-index: 9;
 						pointer-events: auto;
+						&.cut_5{
+							.pic{
+								transition: 0s;
+							}
+						}
 						.pic{
 							margin-top: -20px;
 							opacity: 1;
@@ -823,7 +888,11 @@ $vpw:1;
 					transition: 0.3s;
 					opacity: 0;
 					&.on{ opacity: 1; }
-					&.w1{ background-image: url(../images/pc_event_point_word_1.png); }
+					&.w1{ 
+						height: 86px;
+						top: -24px;
+						background-image: url(../images/pc_event_point_word_1.png); 
+					}
 					&.w2{ background-image: url(../images/pc_event_point_word_2.png); }
 					&.w3{ background-image: url(../images/pc_event_point_word_3.png); }
 					&.w4{ background-image: url(../images/pc_event_point_word_4.png); }

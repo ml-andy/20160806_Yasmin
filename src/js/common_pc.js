@@ -13,7 +13,7 @@
 		iknow_timeout:'',
 		iknow_click:false,
 		event_box_bg_stage_play: false,
-		org_street: 110,
+		org_street: 180,
 		set_orgpoint:-30,
 		street_alpha: -30,
 		street_ctrl: true,
@@ -36,6 +36,9 @@
 	check_org_street();
 
 	//AddListener
+	$('.adverserisk_pop .closebtn').click(function(){
+		$('.adverserisk_pop').fadeOut();
+	});
 	$('.coc_qrcode').on('mouseover',coc_qrcode_over);
 	$('.coc_qrcode').on('mouseout',coc_qrcode_out);
 	$('.event4_animate .word1').on('click',event_popup_4_ani_click_next);
@@ -49,9 +52,16 @@
 		//tracker
 		if(o.now_event == 1) track_btn('電影院popup_立刻入手',1);
 		else if(o.now_event == 4) track_btn('藥局popup_立刻入手',1);
-
+		$('.exit_pop').fadeIn();
+		// window.open('http://www.360kad.com/product/65049.shtml?xc','blank');
+	});
+	$('.exit_pop .ok_btn').click(function(){
+		$('.exit_pop').hide();
 		window.open('http://www.360kad.com/product/65049.shtml?xc','blank');
 	});
+	$('.exit_pop .nook_btn').click(function(){
+		$('.exit_pop').hide();
+	})
 	$('.getsecret_btn').click(function(){
 		
 		//tracker
@@ -286,6 +296,11 @@
 	}
 	function menu_link_click(){
 		var _index = $(this).index();
+		if(_index == 3) {
+			track_btn('风险声明',1);
+			$('.adverserisk_pop').fadeIn();
+			return;
+		}
 		$('.menuDom').removeClass('on');
 		$('.menu').addClass('off').removeClass('on');
 		o.menu_timeout = setTimeout(function() {
