@@ -15,7 +15,7 @@ $(document).ready(function(){
 		iknow_timeout:'',
 		iknow_click:true,
 		event_box_bg_stage_play: false,
-		org_street: 110,
+		org_street: 180,
 		street_alpha: 0,
 		street_ctrl: true,
 		street_deg:0,
@@ -36,6 +36,9 @@ $(document).ready(function(){
 	
 
 	//AddListener
+	$('.adverserisk_pop .closebtn').click(function(){
+		$('.adverserisk_pop').fadeOut();
+	});
 	$('.event_box .box').on('click',event_box_box_icon_click);
 	$('.event4 .prev_btn').on('click',event_popup_4_ani_click_prev);
 	$('#event_popup_4_ani').on('click',event_popup_4_ani_click);
@@ -47,8 +50,15 @@ $(document).ready(function(){
 		//tracker
 		if(o.now_event == 1) track_btn('電影院popup_立刻入手',1);
 		else if(o.now_event == 4) track_btn('藥局popup_立刻入手',1);
-
-		window.open('http://www.ehaoyao.com/product-15527.html','blank');
+		$('.exit_pop').fadeIn();
+		// window.open('http://www.ehaoyao.com/product-15527.html','blank');
+	});
+	$('.exit_pop .ok_btn').click(function(){
+		$('.exit_pop').hide();
+		window.open('http://www.ehaoyao.com','blank');
+	});
+	$('.exit_pop .nook_btn').click(function(){
+		$('.exit_pop').hide();
 	});
 	$('.getsecret_btn').click(function(){
 		
@@ -397,10 +407,17 @@ $(document).ready(function(){
 			track_btn('咖啡館popup_文字按鈕_2_next',1);
 		}
 		else if(o.event_popup_3_ani.currentFrame>400 && o.event_popup_3_ani.currentFrame<574) 
-		{
+		{	
 			o.event_popup_3_ani.gotoAndPlay(575);
 			o.event_popup_3_ani2.gotoAndPlay(575);
+			$('.end_word').addClass('on');
 			track_btn('咖啡館popup_文字按鈕_3_next',1);
+		}
+		else if(o.event_popup_3_ani.currentFrame>574) {
+			track_btn('咖啡館popup_文字按鈕_4_next',1);
+			$('.end_word').removeClass('on');
+			$('.end_word').show();
+			$('.event3 .next_btn').hide();
 		}
 	}
 	function event_popup_3_ani_click_prev(){
@@ -418,9 +435,18 @@ $(document).ready(function(){
 		}
 		else if(o.event_popup_3_ani.currentFrame > 575) 
 		{
-			o.event_popup_3_ani.gotoAndPlay(400);
-			o.event_popup_3_ani2.gotoAndPlay(400);
-			track_btn('咖啡館popup_文字按鈕_4_prev',1);
+			if($('.end_word').hasClass('on')){
+				track_btn('咖啡館popup_文字按鈕_4_prev',1);
+				o.event_popup_3_ani.gotoAndPlay(400);
+				o.event_popup_3_ani2.gotoAndPlay(400);
+			}else{
+				track_btn('咖啡館popup_文字按鈕_4_prev',1);
+				$('.end_word').hide();
+				o.event_popup_3_ani.gotoAndPlay(573);
+				o.event_popup_3_ani2.gotoAndPlay(573);
+				$('.end_word').addClass('on');
+				// $('.event3 .next_btn').hide();
+			}
 		}
 	}
 	function play_popup_2(){
@@ -456,6 +482,11 @@ $(document).ready(function(){
 	}
 	function menu_link_click(){
 		var _index = $(this).index();
+		if(_index == 3) {
+			track_btn('风险声明',1);
+			$('.adverserisk_pop').fadeIn();
+			return;
+		}
 		$('.menuDom').removeClass('on');
 		$('.menu').addClass('off').removeClass('on');
 		o.menu_timeout = setTimeout(function() {
@@ -464,17 +495,14 @@ $(document).ready(function(){
 		}, 1000);
 		if(_index == 0){
 			track_btn('返回小鎮',1);
-			// $('.menubtn').trigger('click');
 		}
 		else if(_index == 1){
 			track_btn('觀看影片',1);
-			// $('.menubtn').trigger('click');
 			o.now_event = 1;
 			show_pop(true);
 		}
 		else if(_index == 2) {
 			track_btn('發現秘訣',1);
-			// $('.menubtn').trigger('click');
 			o.now_event = 4;
 			show_pop(true);
 		}
@@ -482,15 +510,14 @@ $(document).ready(function(){
 	function StageListenter(){
 		if(o.event_box_bg_stage_play) o.event_box_bg_stage.update();
 		if(o.loading_stage) o.loading_stage.update();
-		// if(o.tip_box_stage_play) o.tip_box_stage.update();
-
-		// if(o.event_popup_2_stage_play) o.event_popup_2_stage.update();
+		
 		if(o.event_popup_3_stage_play){
 			o.event_popup_3_stage.update();
 			if(o.event_popup_3_ani.currentFrame >= 180) $('.event3 .prev_btn').show();
 			else $('.event3 .prev_btn').hide();
 			if(o.event_popup_3_ani.currentFrame <= 566) $('.event3 .next_btn').show();
-			else $('.event3 .next_btn').hide();
+			// else $('.event3 .next_btn').hide();
+			if(o.event_popup_3_ani.currentFrame >= 683 && o.event_popup_3_ani.currentFrame < 684) event_popup_3_ani_click_next();
 		}
 		if(o.event_popup_4_stage_play){
 			o.event_popup_4_stage.update();
@@ -501,9 +528,7 @@ $(document).ready(function(){
 			else $('.event4 .btn_box').hide();
 		}
 	}
-	// function event_popup_4_ani_complete(){
-	// 	$('.event4 .btn_box').fadeIn();
-	// }
+	
 	function sound_btn_click(){
 		if($('.sound_btn').hasClass('off')){
 			$('#bgm')[0].play();
@@ -593,6 +618,7 @@ $(document).ready(function(){
 					creatjs_start();
 					return;
 				} 
+				$('.end_word').removeClass('on').hide();
 				o.event_popup_3_ani.gotoAndPlay(1);
 				o.event_popup_3_ani2.gotoAndPlay(1);
 				o.event_popup_3_stage_play = true;

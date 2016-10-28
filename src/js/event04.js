@@ -355,11 +355,11 @@ p.nominalBounds = new cjs.Rectangle(0,0,41,41);
 	this.instance_2.setTransform(598,524.1);
 	this.instance_2._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(187).to({_off:false},0).to({_off:true},145).wait(10).to({_off:false,rotation:180,x:684,y:573.3},0).wait(110));
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(187).to({_off:false},0).to({_off:true},145).wait(10).to({_off:false,rotation:180,x:400,y:690},0).wait(110));
 
 	// 圖層 17
 	this.instance_3 = new lib.PD_txt03();
-	this.instance_3.setTransform(677.1,803.4,1,1,0,0,0,300,115);
+	this.instance_3.setTransform(677.1,803.4,1,1,0,0,0,350,185);
 	this.instance_3.alpha = 0;
 	this.instance_3._off = true;
 

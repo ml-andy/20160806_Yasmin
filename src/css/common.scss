@@ -226,13 +226,14 @@ $vpw:0;
 				&.m1{ background-image: url(../images/menu_link1.png); top: getVW(0); left: getVW(160); }
 				&.m2{ background-image: url(../images/menu_link2.png); top: getVW(93); left: getVW(80); }
 				&.m3{ background-image: url(../images/menu_link3.png); top: getVW(186); }
+				&.m4{ background-image: url(../images/menu_link4.png); top: getVW(276); }
 			}
 		}
 		.menu_logo{
-			@include albvw(298,40,0,70,0);
+			@include albvw(298,87,0,70,0);
 			left: 50%;
 			opacity: 0;
-			background-image: url(../images/menu_logo.png);
+			background-image: url(../images/menu_logo_2.png);
 			background-repeat: no-repeat;
 			background-size: contain;
 			background-position: center center;
@@ -242,6 +243,58 @@ $vpw:0;
 				background-image: url(../images/Beijing_logo01.png);
 				background-size: contain;
 				background-repeat: no-repeat;
+				background-position: center center;
+			}
+		}
+	}
+	.adverserisk_pop{
+		@include flt;
+		z-index: 102;
+		background-color: rgba(255,255,255,0.85);
+		display: none;
+		.closebtn{
+			@include artvw(106,106);
+			cursor: pointer;
+			background-image: url(../images/btnclose.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center center;
+		}
+		.main{
+			@include am(100%,auto);
+			@include fontvw(30,48,#754c24);
+			text-align: center;
+			.org{
+				color:#f26522;
+			}
+		}
+	}
+	.exit_pop{
+		@include flt;
+		z-index: 102;
+		background-color: rgba(0,0,0,0.5);
+		display: none;
+		.main{
+			@include am(100%,400px);
+			height: getVW(769);
+			background-image: url(../images/popup_exit_m.jpg);
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center center;
+			.nook_btn{
+				@include altvw(519,68,116,528);
+				cursor: pointer;
+				background-image: url(../images/popup_exit_m_nookbtn.png);
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center center;
+			}
+			.ok_btn{
+				@include altvw(519,68,116,618);
+				cursor: pointer;
+				background-image: url(../images/popup_exit_m_okbtn.png);
+				background-repeat: no-repeat;
+				background-size: contain;
 				background-position: center center;
 			}
 		}
@@ -481,6 +534,15 @@ $vpw:0;
 					background-position: center center;
 					cursor: pointer;
 					z-index: 1;
+				}
+				.end_word{
+					@include altvw(670,310,46,735);
+					background-image: url(../images/event_popup_3_endword.png);
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center center;
+					z-index: 1;
+					display: none;
 				}
 				canvas{
 					@include alt(auto,100%,50%);
