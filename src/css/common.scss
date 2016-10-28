@@ -524,7 +524,7 @@ $vpw:0;
 					background-repeat: no-repeat;
 					background-position: center center;
 					cursor: pointer;
-					z-index: 1;
+					z-index: 2;
 				}
 				.prev_btn{
 					@include arbvw(47,47,110,155);
@@ -533,13 +533,13 @@ $vpw:0;
 					background-repeat: no-repeat;
 					background-position: center center;
 					cursor: pointer;
-					z-index: 1;
+					z-index: 2;
 				}
 				.end_word{
 					@include altvw(670,310,0,735);
 					width: 100%;
 					height: getVH(310);
-					top: getVH(735);
+					top: getVH(650);
 					background-image: url(../images/event_popup_3_endword.png);
 					background-repeat: no-repeat;
 					background-size: auto 100%;

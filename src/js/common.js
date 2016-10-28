@@ -416,6 +416,7 @@ $(document).ready(function(){
 		else if(o.event_popup_3_ani.currentFrame>574) {
 			track_btn('咖啡館popup_文字按鈕_4_next',1);
 			$('.end_word').removeClass('on');
+			o.event_popup_3_ani2.alpha = 0;
 			$('.end_word').show();
 			$('.event3 .next_btn').hide();
 		}
@@ -445,6 +446,7 @@ $(document).ready(function(){
 				o.event_popup_3_ani.gotoAndPlay(573);
 				o.event_popup_3_ani2.gotoAndPlay(573);
 				$('.end_word').addClass('on');
+				o.event_popup_3_ani2.alpha = 1;
 				$('.event3 .next_btn').show();
 			}
 		}
