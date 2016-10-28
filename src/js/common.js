@@ -445,7 +445,7 @@ $(document).ready(function(){
 				o.event_popup_3_ani.gotoAndPlay(573);
 				o.event_popup_3_ani2.gotoAndPlay(573);
 				$('.end_word').addClass('on');
-				// $('.event3 .next_btn').hide();
+				$('.event3 .next_btn').show();
 			}
 		}
 	}

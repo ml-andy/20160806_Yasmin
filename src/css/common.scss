@@ -536,7 +536,9 @@ $vpw:0;
 					z-index: 1;
 				}
 				.end_word{
-					@include altvw(670,310,46,735);
+					@include altvw(670,310,0,735);
+					width: 100%;
+					height: getVH(310);
 					background-image: url(../images/event_popup_3_endword.png);
 					background-repeat: no-repeat;
 					background-size: contain;
