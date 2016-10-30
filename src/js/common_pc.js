@@ -57,7 +57,7 @@
 	});
 	$('.exit_pop .ok_btn').click(function(){
 		$('.exit_pop').hide();
-		window.open('http://www.360kad.com/product/65049.shtml?xc','blank');
+		window.open('http://www.360kad.com/?utm_source=baidu&utm_medium=cpc&utm_campaign','blank');
 	});
 	$('.exit_pop .nook_btn').click(function(){
 		$('.exit_pop').hide();
